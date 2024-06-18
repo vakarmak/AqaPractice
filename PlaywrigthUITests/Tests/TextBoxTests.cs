@@ -4,9 +4,10 @@ namespace PlaywrigthUITests.Tests
     [Description("Verify text box on buttons page")]
     class TextBoxTests : UITestFixture
     {
+        [Category("PlayWrightTestBoxTests")]
+        
         [Test]
         [Description("Text Full Name should be visible")]
-        [Category("TestBoxTests")]
         public async Task VerifyTextFullName()
         {
             // Given I go to DemoQa Elements Page 

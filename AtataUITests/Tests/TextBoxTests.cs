@@ -4,9 +4,11 @@ namespace AtataUITests.Tests
 {
     public class TextBoxTests : UITestFixture
     {
+        
+        [Category("AtataTestBoxTests")]
+        
         [Test]
         [Description("Text Full Name should be visible")]
-        [Category("TestBoxTests")]
         public void VerifyTextFullName()
         {
             Go.To<DemoQAElementsPage>().
