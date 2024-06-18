@@ -6,6 +6,7 @@ namespace AtataUITests.Tests
     {
         [Test]
         [Description("Text Full Name should be visible")]
+        [Category("TestBoxTests")]
         public void VerifyTextFullName()
         {
             Go.To<DemoQAElementsPage>().
