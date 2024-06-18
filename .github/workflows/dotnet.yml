@@ -11,41 +11,18 @@ on:
 
 jobs:
   build:
+
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Print working directory
-      run: pwd
-
-    - name: List directory contents
-      run: ls -la
-
-    - name: List AqaPractice directory contents
-      run: ls -la ./AqaPractice
-
-    - name: List build output
-      run: ls -la ./AqaPractice/AtataUITests/bin/Debug/net8.0
-
-    - name: Set up .NET
-      uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
-
+        dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore ./AqaPractice/AqaPractice.sln
-
-    - name: Build the project
-      run: dotnet build ./AqaPractice/AqaPractice.sln --configuration Debug
-
-    - name: Verify build output
-      run: |
-        if [ ! -f ./AqaPractice/AtataUITests/bin/Debug/net8.0/AtataUITest.dll ]; then
-          echo "Test DLL not found!"
-          exit 1
-        fi
-
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal ./AqaPractice/AtataUITests/bin/Debug/net8.0/AtataUITest.dll --filter "Category=TextBoxTests"
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal .\AqaPractice\AtataUITests\bin\Debug\net8.0.3 --filter "Category=TextBoxTests"
