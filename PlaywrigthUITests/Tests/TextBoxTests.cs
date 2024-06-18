@@ -6,6 +6,7 @@ namespace PlaywrigthUITests.Tests
     {
         [Test]
         [Description("Text Full Name should be visible")]
+        [Category("TestBoxTests")]
         public async Task VerifyTextFullName()
         {
             // Given I go to DemoQa Elements Page 
