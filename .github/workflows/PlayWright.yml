@@ -25,5 +25,8 @@ jobs:
         run: dotnet build
         working-directory: PlaywrightUITests
         
+      - name: PWInstall
+        run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+            
       - name: Test
-        run: dotnet test --verbosity normal PlaywrightUITests\PlaywrightUITests.csproj --filter "Category=PlayWrightTestBoxTests"
+        run: dotnet test PlaywrigthUITests/bin/Debug/net8.0/PlaywrigthUITests.dll --filter "Category=PlayWrightTestBoxTests"
