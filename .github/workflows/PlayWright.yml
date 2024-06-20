@@ -22,7 +22,6 @@ jobs:
         
       - name: Build
         run: dotnet build
-        working-directory: PlaywrightUITests
         
       - name: PWInstall
         run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
