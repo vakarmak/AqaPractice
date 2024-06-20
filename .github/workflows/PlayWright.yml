@@ -27,6 +27,7 @@ jobs:
         
       - name: PWInstall
         run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        working-directory: PlaywrightUITests
             
       - name: Test
         run: dotnet test PlaywrigthUITests/bin/Debug/net8.0/PlaywrigthUITests.dll --filter "Category=PlayWrightTestBoxTests"
