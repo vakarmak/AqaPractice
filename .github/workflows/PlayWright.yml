@@ -19,7 +19,6 @@ jobs:
           
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: PlaywrightUITests
         
       - name: Build
         run: dotnet build
