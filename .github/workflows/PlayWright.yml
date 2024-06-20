@@ -2,9 +2,7 @@ name: PlayWright Tests
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: [ "playwright-development" ]
 
 jobs:
   build:
