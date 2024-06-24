@@ -74,6 +74,8 @@ namespace PlaywrigthUITests.Tests
         //TODO : 
         //TC-4 : Verify Click Me button should be enabled
         
+        [Category("UI")]
+        
         [Test]
         [Description("Verify Click Me button should be enabled")]
         public async Task VerifyClickMeButtonEnabled()

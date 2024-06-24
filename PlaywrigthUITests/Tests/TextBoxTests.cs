@@ -4,7 +4,7 @@ namespace PlaywrigthUITests.Tests
     [Description("Verify text box on buttons page")]
     class TextBoxTests : UITestFixture
     {
-        [Category("PlayWrightTestBoxTests")]
+        [Category("UI")]
         
         [Test]
         [Description("Text Full Name should be visible")]

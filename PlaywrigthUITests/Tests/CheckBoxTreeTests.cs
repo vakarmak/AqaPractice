@@ -11,6 +11,8 @@ namespace PlaywrigthUITests.Tests
         {
             _demoQACheckBoxPage = new DemoQACheckBoxPage(Page);
         }
+        
+        [Category("UI")]
 
         [Test]
         public async Task VerifyCheckBoxChecked()
