@@ -11,6 +11,8 @@ namespace PlaywrigthUITests.Tests
         {
             _radioButtonPage = new DemoQARadioButtonPage(Page);
         }
+        
+        [Category("UI")]
 
         [Test]
         [Description("Verify Yes radio Button can be checked and display text You have selected Yes")]

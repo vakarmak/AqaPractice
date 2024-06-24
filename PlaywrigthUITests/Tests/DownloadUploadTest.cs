@@ -11,6 +11,8 @@ namespace PlaywrigthUITests.Tests
         {
             _demoQADownloadPage = new DemoQADownloadPage(Page);
         }
+        
+        [Category("UI")]
 
         [Test, Description("Donwload file verify file updated")]
         public async Task VerifyDownload()

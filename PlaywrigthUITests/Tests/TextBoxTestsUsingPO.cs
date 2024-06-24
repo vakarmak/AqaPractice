@@ -12,6 +12,8 @@ namespace PlaywrigthUITests.Tests
         {
             _demoQATextBoxPage = new DemoQATextBoxPage(Page);
         }
+        
+        [Category("UI")]
 
         [Test]
         [Description("Text Full Name should be visible")]

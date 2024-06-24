@@ -1,4 +1,4 @@
-name: Playwright
+name: Playwright tests
 
 on:
   push:
@@ -25,4 +25,4 @@ jobs:
         run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
         working-directory: PlaywrigthUITests
       - name: Test
-        run: dotnet test PlaywrigthUITests/PlaywrigthUITests.csproj --filter "Category=PlayWrightTestBoxTests"
+        run: dotnet test PlaywrigthUITests/PlaywrigthUITests.csproj --filter "Category=UI"
