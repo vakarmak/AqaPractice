@@ -45,11 +45,4 @@ internal class WebTablesTests : UITestFixture
     //Add new row and verify row added
     //Edit row and verify row edited
     //Delete row and verify row deleted
-
-    [Test]
-    public async Task VarifyMandatoryFields()
-    {
-        await _demoQaWebTablesPage.GoToDemoQaWebTablesPage();
-        
-    }
 }
