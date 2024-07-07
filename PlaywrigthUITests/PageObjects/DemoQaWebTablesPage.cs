@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using Bogus;
+using Microsoft.Playwright;
 
 namespace PlaywrigthUITests.PageObjects;
 
@@ -6,11 +7,14 @@ internal class DemoQaWebTablesPage(IPage page)
 {
     private readonly string _webTablesPageUrl = "https://demoqa.com/webtables";
 
+    private ILocator AddRowButton => page.Locator("//button[@id='addNewRecordButton']");
+    private ILocator SubmitButton => page.Locator("//button[@id='submit']");
+
     public async Task GoToDemoQaWebTablesPage()
     {
         await page.GotoAsync(_webTablesPageUrl);
     }
-    
+
     public async Task VerifyTableVisible()
     {
         var table = page.Locator(".ReactTable");
@@ -69,7 +73,7 @@ internal class DemoQaWebTablesPage(IPage page)
         // Check if the content of the first cell in the specified column matches the given value
         if (cells.Any())
         {
-            var cellContent = await cells.First().InnerTextAsync();
+            var cellContent = await cells.Last().InnerTextAsync();
             Assert.That(cellContent == value, $"The content of the first cell in the '{headerName}' column does not match '{value}'.");
         }
         else
@@ -89,5 +93,32 @@ internal class DemoQaWebTablesPage(IPage page)
         var popup = page.Locator(".modal-content");
         var firstName = popup.GetByPlaceholder("First Name");
         await Assertions.Expect(firstName).ToBeVisibleAsync();
+    }
+    
+    public async Task OpenAddRowPopup()
+    {
+        await AddRowButton.ClickAsync();
+    }
+
+    public async Task SubmitChanges()
+    {
+        await SubmitButton.ClickAsync();
+    }
+
+    public async Task AddNewRow(string firstName, string lastName, string email, string age, string salary,
+        string department)
+    {
+        var popup = page.Locator("//form[@id='userForm']");
+        var firstNameInput = popup.GetByPlaceholder("First Name");
+        var lastNameInput = popup.GetByPlaceholder("Last Name");
+        var emailInput = popup.GetByPlaceholder("name@example.com");
+        var ageInput = popup.Locator("//input[@id='age']");
+        var salaryInput = popup.Locator("//input[@id='salary']");
+        var departmentInput = popup.GetByPlaceholder("Department");
+    }
+
+    public async Task VerifyAddedRow()
+    {
+        
     }
 }
