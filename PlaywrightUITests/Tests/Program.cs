@@ -1,7 +1,7 @@
 ﻿using Microsoft.Playwright;
 
 
-namespace PlaywrigthUITests.Tests;
+namespace PlaywrightUITests.Tests;
 
 public class Program
 {

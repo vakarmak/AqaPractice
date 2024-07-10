@@ -1,7 +1,7 @@
 ﻿using Microsoft.Playwright;
-using PlaywrigthUITests.Infrastructure;
+using PlaywrightUITests.Infrastructure;
 
-namespace PlaywrigthUITests.PageObjects
+namespace PlaywrightUITests.PageObjects
 {
     internal class DemoQADownloadPage
     {

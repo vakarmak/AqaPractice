@@ -1,4 +1,4 @@
-﻿namespace PlaywrigthUITests.Infrastructure
+﻿namespace PlaywrightUITests.Infrastructure
 {
     internal class HelperMethods
     {

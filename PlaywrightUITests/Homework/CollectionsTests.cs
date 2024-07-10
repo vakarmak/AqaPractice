@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework.Legacy;
 
-namespace PlaywrigthUITests.Homework
+namespace PlaywrightUITests.Homework
 {
     public sealed class CollectionsTests
     {

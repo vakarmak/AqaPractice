@@ -1,6 +1,6 @@
-﻿using PlaywrigthUITests.PageObjects;
+﻿using PlaywrightUITests.PageObjects;
 
-namespace PlaywrigthUITests.Tests
+namespace PlaywrightUITests.Tests
 {
     internal class RadioButtonsTest : UITestFixture
     {

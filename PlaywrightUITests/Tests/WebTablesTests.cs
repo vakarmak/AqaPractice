@@ -1,8 +1,8 @@
 ﻿using Bogus;
 using Microsoft.Playwright;
-using PlaywrigthUITests.PageObjects;
+using PlaywrightUITests.PageObjects;
 
-namespace PlaywrigthUITests.Tests;
+namespace PlaywrightUITests.Tests;
 
 internal class WebTablesTests : UITestFixture
 {

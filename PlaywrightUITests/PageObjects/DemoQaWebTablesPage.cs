@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Microsoft.Playwright;
 
-namespace PlaywrigthUITests.PageObjects;
+namespace PlaywrightUITests.PageObjects;
 
 internal class DemoQaWebTablesPage(IPage page)
 {
