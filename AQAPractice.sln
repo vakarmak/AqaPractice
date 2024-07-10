@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtataUITests", "AtataUITest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{B5141481-09DA-47AC-A582-8AE96B26F7A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaywrigthUITests", "PlaywrigthUITests\PlaywrigthUITests.csproj", "{7EBE0D15-2330-4BFE-A211-A214557320CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaywrightUITests", "PlaywrightUITests\PlaywrightUITests.csproj", "{7EBE0D15-2330-4BFE-A211-A214557320CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
