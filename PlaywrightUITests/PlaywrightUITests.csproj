@@ -7,7 +7,7 @@
 
     <IsPackable>true</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <RootNamespace>PlaywrightUITests</RootNamespace>
+    <RootNamespace>PlaywrightUiTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
