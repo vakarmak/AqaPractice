@@ -17,9 +17,9 @@ jobs:
           dotnet-version: 8.0.x
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: PlaywrigthUITests
+        working-directory: PlaywrightUITests
       - name: Build
         run: dotnet build --no-restore
-        working-directory: PlaywrigthUITests
+        working-directory: PlaywrightUITests
       - name: Test
-        run: dotnet test PlaywrigthUITests/PlaywrightUITests.csproj --filter "Category=UI"
+        run: dotnet test PlaywrightUITests/PlaywrightUITests.csproj --filter "Category=UI"
