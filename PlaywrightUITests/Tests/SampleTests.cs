@@ -1,4 +1,4 @@
-namespace PlaywrightUITests.Tests
+namespace PlaywrigthUITests.Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]

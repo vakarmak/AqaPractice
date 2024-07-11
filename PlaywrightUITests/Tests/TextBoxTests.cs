@@ -1,5 +1,7 @@
 ﻿using Microsoft.Playwright;
-namespace PlaywrightUITests.Tests
+using PlaywrightUITests;
+
+namespace PlaywrigthUITests.Tests
 {
     [Description("Verify text box on buttons page")]
     class TextBoxTests : UITestFixture

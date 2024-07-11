@@ -1,6 +1,7 @@
+using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
-namespace PlaywrightUITests.Tests;
+namespace PlaywrigthUITests.Tests;
 
 internal class DynamicPropertiesTests : UITestFixture
 {
