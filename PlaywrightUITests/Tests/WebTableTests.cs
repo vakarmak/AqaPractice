@@ -15,6 +15,8 @@ internal class WebTableTests : UITestFixture
         _demoQaWebTablePage = new DemoQaWebTablePage(Page);
     }
     
+    [Category("UI")]
+    
     [Test]
     public async Task VerifyTableVisible()
     {
@@ -27,7 +29,6 @@ internal class WebTableTests : UITestFixture
         await _demoQaWebTablePage.VerifyFirstNameVisible();
     }
 
-    //TODO: automate test cases
     //Check any mandatory field
     
     [Test]
