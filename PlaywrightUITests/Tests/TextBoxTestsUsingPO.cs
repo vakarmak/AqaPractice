@@ -1,6 +1,7 @@
-﻿using PlaywrightUITests.PageObjects;
+﻿using PlaywrightUITests;
+using PlaywrightUITests.PageObjects;
 
-namespace PlaywrightUITests.Tests
+namespace PlaywrigthUITests.Tests
 {
     [TestFixture]
     internal class TextBoxTestsUsingPO : UITestFixture
