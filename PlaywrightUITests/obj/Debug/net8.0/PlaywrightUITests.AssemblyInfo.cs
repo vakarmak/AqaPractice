@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlaywrightUITests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2b98a9a4fdc5f423c21344eb657d7b975da7883")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f3e6c1360d5554b1a6bd717a4602329f03dcb9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlaywrightUITests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlaywrightUITests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
