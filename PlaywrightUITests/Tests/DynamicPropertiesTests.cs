@@ -1,16 +1,17 @@
+using PlaywrightUiTests;
 using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
 namespace PlaywrigthUITests.Tests;
 
-internal class DynamicPropertiesTests : UITestFixture
+internal class DynamicPropertiesTests : UiTestFixture
 {
-    private DemoQADynamicPropertiesPage _demoQaDynamicPropertiesPage;
+    private DemoQaDynamicPropertiesPage _demoQaDynamicPropertiesPage;
 
     [SetUp]
     public void SetupDemoQaPage()
     {
-        _demoQaDynamicPropertiesPage = new DemoQADynamicPropertiesPage(Page);
+        _demoQaDynamicPropertiesPage = new DemoQaDynamicPropertiesPage(Page);
     }
 
     [Test, Description("Verify ColorChange button have color black at page init and after 5 sec color red")]
@@ -26,20 +27,20 @@ internal class DynamicPropertiesTests : UITestFixture
     public async Task TestEnableAfter()
     {
         await _demoQaDynamicPropertiesPage.GoToDemoQaDynamicPropertiesPage();
-        await _demoQaDynamicPropertiesPage.EnableAfter5sec();
+        await _demoQaDynamicPropertiesPage.EnableAfter5Sec();
     }
 
     [Test]
     public async Task TestVisibleAfter()
     {
         await _demoQaDynamicPropertiesPage.GoToDemoQaDynamicPropertiesPage();
-        await _demoQaDynamicPropertiesPage.VisibleAfter5sec();
+        await _demoQaDynamicPropertiesPage.VisibleAfter5Sec();
     }
 
     [Test]
     public async Task TestVisibleAfterClickWait()
     {
         await _demoQaDynamicPropertiesPage.GoToDemoQaDynamicPropertiesPage();
-        await _demoQaDynamicPropertiesPage.VisibleAfter5sec();
+        await _demoQaDynamicPropertiesPage.VisibleAfter5Sec();
     }
 }

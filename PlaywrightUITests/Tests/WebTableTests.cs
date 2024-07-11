@@ -1,11 +1,10 @@
 using Bogus;
 using Microsoft.Playwright;
-using PlaywrightUITests;
-using PlaywrigthUITests.PageObjects;
+using PlaywrightUiTests.PageObjects;
 
-namespace PlaywrigthUITests.Tests;
+namespace PlaywrightUiTests.Tests;
 
-internal class WebTableTests : UITestFixture
+internal class WebTableTests : UiTestFixture
 {
     private DemoQaWebTablePage _demoQaWebTablePage;
     

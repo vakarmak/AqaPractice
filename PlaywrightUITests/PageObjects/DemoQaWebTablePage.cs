@@ -1,36 +1,30 @@
 using Microsoft.Playwright;
 
-namespace PlaywrigthUITests.PageObjects;
+namespace PlaywrightUiTests.PageObjects;
 
-internal class DemoQaWebTablePage
+internal class DemoQaWebTablePage(IPage page)
 {
-    private IPage _page;
-    private string _webTablePageUrl = "https://demoqa.com/webtables";
+    private readonly string _webTablePageUrl = "https://demoqa.com/webtables";
 
-    public DemoQaWebTablePage(IPage page)
-    {
-        _page = page;
-    }
-    
-    private ILocator AddButton => _page.GetByRole(AriaRole.Button, new() { Name = "Add" });
-    private ILocator SubmitButton => _page.GetByRole(AriaRole.Button, new() { Name = "Submit" });
-    private ILocator EditButton => _page.Locator("#edit-record-1 path");
-    private ILocator DeleteButton => _page.Locator("#delete-record-1").GetByRole(AriaRole.Img);
+    private ILocator AddButton => page.GetByRole(AriaRole.Button, new() { Name = "Add" });
+    private ILocator SubmitButton => page.GetByRole(AriaRole.Button, new() { Name = "Submit" });
+    private ILocator EditButton => page.Locator("#edit-record-1 path");
+    private ILocator DeleteButton => page.Locator("#delete-record-1").GetByRole(AriaRole.Img);
 
     public async Task GoToDemoQaWebTablePage()
     {
-        await _page.GotoAsync(_webTablePageUrl);
+        await page.GotoAsync(_webTablePageUrl);
     }
 
     public async Task VerifyTableVisible()
     {
-        var table = _page.Locator(".ReactTable");
+        var table = page.Locator(".ReactTable");
         await Assertions.Expect(table).ToBeVisibleAsync();
     }
 
     public async Task VerifyTableRowVisible()
     {
-        var table = _page.Locator(".ReactTable");
+        var table = page.Locator(".ReactTable");
         var rows = await table.Locator(".rt-tr-group").AllAsync();
 
         if (rows.Any())
@@ -45,7 +39,7 @@ internal class DemoQaWebTablePage
 
     public async Task VerifyTableRowContent(string headerName, string value)
     {
-        var table = _page.Locator(".ReactTable");
+        var table = page.Locator(".ReactTable");
 
         // Locate headers
         var headers = await table.Locator(".rt-th").AllInnerTextsAsync();
@@ -91,13 +85,13 @@ internal class DemoQaWebTablePage
 
     public async Task VerifyPopupVisible()
     {
-        var popup = _page.Locator(".modal-content");
+        var popup = page.Locator(".modal-content");
         await Assertions.Expect(popup).ToBeVisibleAsync();
     }
 
     public async Task VerifyFirstNameVisible()
     {
-        var popup = _page.Locator(".modal-content");
+        var popup = page.Locator(".modal-content");
         var firstName = popup.GetByPlaceholder("First Name");
         await Assertions.Expect(firstName).ToBeVisibleAsync();
     }
@@ -105,7 +99,7 @@ internal class DemoQaWebTablePage
     public async Task CheckMandatoryFields()
     {
         await AddButton.ClickAsync();
-        var registrationForm = _page.Locator(".modal-content");
+        var registrationForm = page.Locator(".modal-content");
         await SubmitButton.ClickAsync();
         var validationMark =  registrationForm.Locator("//*[@id=\"userForm\"]");
         await Assertions.Expect(validationMark).ToHaveAttributeAsync("class", "was-validated");
@@ -114,34 +108,34 @@ internal class DemoQaWebTablePage
     public async Task AddNewRow(string firstName, string lastName, string email, int age, int salary, string department)
     {
         await AddButton.ClickAsync();
-        await _page.Locator(".modal-content").IsVisibleAsync();
-        await _page.GetByPlaceholder("First Name").FillAsync(firstName);
-        await _page.GetByPlaceholder("Last Name").FillAsync(lastName);
-        await _page.GetByPlaceholder("name@example.com").FillAsync(email);
-        await _page.GetByPlaceholder("Age").FillAsync(age.ToString());
-        await _page.GetByPlaceholder("Salary").FillAsync(salary.ToString());
-        await _page.GetByPlaceholder("Department").FillAsync(department);
+        await page.Locator(".modal-content").IsVisibleAsync();
+        await page.GetByPlaceholder("First Name").FillAsync(firstName);
+        await page.GetByPlaceholder("Last Name").FillAsync(lastName);
+        await page.GetByPlaceholder("name@example.com").FillAsync(email);
+        await page.GetByPlaceholder("Age").FillAsync(age.ToString());
+        await page.GetByPlaceholder("Salary").FillAsync(salary.ToString());
+        await page.GetByPlaceholder("Department").FillAsync(department);
         await SubmitButton.ClickAsync();
     }
 
     public async Task VerifyAddedRow(string firstName, string lastName)
     {
-        await _page.Locator(".modal-content").IsVisibleAsync();
-        await Assertions.Expect(_page.Locator("//div[@class='rt-tr-group'][4]")).ToContainTextAsync(firstName);
-        await Assertions.Expect(_page.Locator("//div[@class='rt-tr-group'][4]")).ToContainTextAsync(lastName);
+        await page.Locator(".modal-content").IsVisibleAsync();
+        await Assertions.Expect(page.Locator("//div[@class='rt-tr-group'][4]")).ToContainTextAsync(firstName);
+        await Assertions.Expect(page.Locator("//div[@class='rt-tr-group'][4]")).ToContainTextAsync(lastName);
     }
     
     public async Task EditRowAndVerify(string firstname)
     {
         await EditButton.ClickAsync();
-        await _page.GetByPlaceholder("First Name").FillAsync(firstname);
+        await page.GetByPlaceholder("First Name").FillAsync(firstname);
         await SubmitButton.ClickAsync();
-        await Assertions.Expect(_page.Locator("//div[@class='rt-tbody']/div[1]")).ToContainTextAsync(firstname);
+        await Assertions.Expect(page.Locator("//div[@class='rt-tbody']/div[1]")).ToContainTextAsync(firstname);
     }
     
     public async Task DeleteRowAndVerify()
     {
         await DeleteButton.ClickAsync();
-        await _page.Locator("//div[@class='rt-tbody']/div[1]").IsHiddenAsync();
+        await page.Locator("//div[@class='rt-tbody']/div[1]").IsHiddenAsync();
     }
 }

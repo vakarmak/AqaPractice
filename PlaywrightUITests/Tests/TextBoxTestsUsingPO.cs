@@ -1,17 +1,16 @@
-﻿using PlaywrightUITests;
-using PlaywrightUITests.PageObjects;
+﻿using PlaywrightUITests.PageObjects;
 
-namespace PlaywrigthUITests.Tests
+namespace PlaywrightUiTests.Tests
 {
     [TestFixture]
-    internal class TextBoxTestsUsingPO : UITestFixture
+    internal class TextBoxTestsUsingPo : UiTestFixture
     {
-        private DemoQATextBoxPage _demoQATextBoxPage;
+        private DemoQaTextBoxPage _demoQaTextBoxPage;
 
         [SetUp]
-        public void SetupDemoQAPage()
+        public void SetupDemoQaPage()
         {
-            _demoQATextBoxPage = new DemoQATextBoxPage(Page);
+            _demoQaTextBoxPage = new DemoQaTextBoxPage(Page);
         }
         
         [Category("UI")]
@@ -20,11 +19,11 @@ namespace PlaywrigthUITests.Tests
         [Description("Text Full Name should be visible")]
         public async Task VerifyTextFullName()
         {
-            await _demoQATextBoxPage.GoToElementsPage();
-            await _demoQATextBoxPage.ClickTextBoxMenu();
-            await _demoQATextBoxPage.WaitForTextBoxPage();
+            await _demoQaTextBoxPage.GoToElementsPage();
+            await _demoQaTextBoxPage.ClickTextBoxMenu();
+            await _demoQaTextBoxPage.WaitForTextBoxPage();
 
-            var isVisible = await _demoQATextBoxPage.IsFullNameTextVisible();
+            var isVisible = await _demoQaTextBoxPage.IsFullNameTextVisible();
             Assert.That(isVisible, Is.True, "The element with text 'Full Name' should be visible.");
         }
 
@@ -32,11 +31,11 @@ namespace PlaywrigthUITests.Tests
         [Description("Text Full Name Input should be visible")]
         public async Task VerifyTextFieldFullName()
         {
-            await _demoQATextBoxPage.GoToElementsPage();
-            await _demoQATextBoxPage.ClickTextBoxMenu();
-            await _demoQATextBoxPage.WaitForTextBoxPage();
+            await _demoQaTextBoxPage.GoToElementsPage();
+            await _demoQaTextBoxPage.ClickTextBoxMenu();
+            await _demoQaTextBoxPage.WaitForTextBoxPage();
 
-            var isVisible = await _demoQATextBoxPage.IsFullNameInputVisible();
+            var isVisible = await _demoQaTextBoxPage.IsFullNameInputVisible();
             Assert.That(isVisible, Is.True, "The element with placeholder 'Full Name' should be visible.");
         }
 
@@ -44,13 +43,13 @@ namespace PlaywrigthUITests.Tests
         [Description("Enter 'John Doe' in Text Full Name Input, press submit, text Name should be 'Name:John Doe'")]
         public async Task VerifyTextSetFullName()
         {
-            await _demoQATextBoxPage.GoToElementsPage();
-            await _demoQATextBoxPage.ClickTextBoxMenu();
-            await _demoQATextBoxPage.WaitForTextBoxPage();
-            await _demoQATextBoxPage.FillFullName("John Doe");
-            await _demoQATextBoxPage.ClickSubmitButton();
+            await _demoQaTextBoxPage.GoToElementsPage();
+            await _demoQaTextBoxPage.ClickTextBoxMenu();
+            await _demoQaTextBoxPage.WaitForTextBoxPage();
+            await _demoQaTextBoxPage.FillFullName("John Doe");
+            await _demoQaTextBoxPage.ClickSubmitButton();
 
-            var isVisible = await _demoQATextBoxPage.IsNameVisible("John Doe");
+            var isVisible = await _demoQaTextBoxPage.IsNameVisible("John Doe");
             Assert.That(isVisible, Is.True, "The element with text 'Name:John Doe' should be visible.");
         }
 
@@ -58,13 +57,13 @@ namespace PlaywrigthUITests.Tests
         [Description("Clear Text Full Name Input, press submit, text Name should not be visible")]
         public async Task VerifyTextClearFullName()
         {
-            await _demoQATextBoxPage.GoToElementsPage();
-            await _demoQATextBoxPage.ClickTextBoxMenu();
-            await _demoQATextBoxPage.WaitForTextBoxPage();
-            await _demoQATextBoxPage.FillFullName("");
-            await _demoQATextBoxPage.ClickSubmitButton();
+            await _demoQaTextBoxPage.GoToElementsPage();
+            await _demoQaTextBoxPage.ClickTextBoxMenu();
+            await _demoQaTextBoxPage.WaitForTextBoxPage();
+            await _demoQaTextBoxPage.FillFullName("");
+            await _demoQaTextBoxPage.ClickSubmitButton();
 
-            var isVisible = await _demoQATextBoxPage.IsNameHidden("John Doe");
+            var isVisible = await _demoQaTextBoxPage.IsNameHidden("John Doe");
             Assert.That(isVisible, Is.True, "The element with text 'Name:John Doe' should not be visible.");
         }
     }

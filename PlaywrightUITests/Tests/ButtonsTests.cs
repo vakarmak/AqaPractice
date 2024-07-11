@@ -1,12 +1,13 @@
 ﻿using Microsoft.Playwright;
 using NUnitTests.Features.Drive;
+using PlaywrightUiTests;
 using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
 namespace PlaywrigthUITests.Tests
 {
     [Description("Verify Buttons on buttons page")]
-    class ButtonsTestsrun : UITestFixture
+    class ButtonsTestsrun : UiTestFixture
     {
         private DemoQaButtonsPage _demoQaButtonsPage;
         

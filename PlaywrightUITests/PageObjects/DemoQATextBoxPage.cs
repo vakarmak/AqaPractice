@@ -2,63 +2,57 @@
 
 namespace PlaywrightUITests.PageObjects
 {
-    internal class DemoQATextBoxPage
+    internal class DemoQaTextBoxPage(IPage page)
     {
-        private IPage _page;
-        private string elementsPageUrl = "https://demoqa.com/elements";
-        private string textBoxPageUrl = "https://demoqa.com/text-box";
-        private string fullNamePlaceholder = "Full Name";
-        private string submitButtonRole = "button";
-        private string submitButtonName = "Submit";
-
-        public DemoQATextBoxPage(IPage page)
-        {
-            _page = page;
-        }
+        private readonly string _elementsPageUrl = "https://demoqa.com/elements";
+        private readonly string _textBoxPageUrl = "https://demoqa.com/text-box";
+        private readonly string _fullNamePlaceholder = "Full Name";
+        private readonly string _submitButtonRole = "button";
+        private readonly string _submitButtonName = "Submit";
 
         public async Task GoToElementsPage()
         {
-            await _page.GotoAsync(elementsPageUrl);
+            await page.GotoAsync(_elementsPageUrl);
         }
 
         public async Task ClickTextBoxMenu()
         {
-            await _page.GetByText("Text Box").ClickAsync();
+            await page.GetByText("Text Box").ClickAsync();
         }
 
         public async Task WaitForTextBoxPage()
         {
-            await _page.WaitForURLAsync(textBoxPageUrl);
+            await page.WaitForURLAsync(_textBoxPageUrl);
         }
 
         public async Task<bool> IsFullNameTextVisible()
         {
-            return await _page.GetByText("Full Name").IsVisibleAsync();
+            return await page.GetByText("Full Name").IsVisibleAsync();
         }
 
         public async Task<bool> IsFullNameInputVisible()
         {
-            return await _page.GetByPlaceholder(fullNamePlaceholder).IsVisibleAsync();
+            return await page.GetByPlaceholder(_fullNamePlaceholder).IsVisibleAsync();
         }
 
         public async Task FillFullName(string fullName)
         {
-            await _page.GetByPlaceholder(fullNamePlaceholder).FillAsync(fullName);
+            await page.GetByPlaceholder(_fullNamePlaceholder).FillAsync(fullName);
         }
 
         public async Task ClickSubmitButton()
         {
-            await _page.GetByRole(AriaRole.Button, new() { Name = submitButtonName }).ClickAsync();
+            await page.GetByRole(AriaRole.Button, new() { Name = _submitButtonName }).ClickAsync();
         }
 
         public async Task<bool> IsNameVisible(string name)
         {
-            return await _page.GetByText($"Name:{name}").IsVisibleAsync();
+            return await page.GetByText($"Name:{name}").IsVisibleAsync();
         }
 
         public async Task<bool> IsNameHidden(string name)
         {
-            return await _page.GetByText($"Name:{name}").IsHiddenAsync();
+            return await page.GetByText($"Name:{name}").IsHiddenAsync();
         }
     }
 }

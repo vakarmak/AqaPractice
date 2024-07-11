@@ -1,24 +1,24 @@
 ﻿using Microsoft.Playwright;
 
-namespace PlaywrigthUITests
+namespace PlaywrightUiTests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    internal class UITestFixture
+    internal class UiTestFixture
     {
-        public IPage Page { get; private set; }
-        private IBrowser browser;
+        protected IPage Page { get; private set; }
+        private IBrowser _browser;
 
         [SetUp]
         public async Task Setup()
         {
             var playwrightDriver = await Playwright.CreateAsync();
-            browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 Headless = false // Set to false to run the browser in non-headless mode
             });
             
-            var context = await browser.NewContextAsync(new BrowserNewContextOptions
+            var context = await _browser.NewContextAsync(new BrowserNewContextOptions
             {
                 ViewportSize = new ViewportSize
                 {
@@ -34,7 +34,7 @@ namespace PlaywrigthUITests
         public async Task Teardown()
         {
             await Page.CloseAsync();
-            await browser.CloseAsync();
+            await _browser.CloseAsync();
         }
     }
 }

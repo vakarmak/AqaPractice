@@ -1,16 +1,17 @@
-﻿using PlaywrightUITests;
+﻿using PlaywrightUiTests;
+using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
 namespace PlaywrigthUITests.Tests
 {
-    internal class DownloadUploadTest : UITestFixture
+    internal class DownloadUploadTest : UiTestFixture
     {
-        private DemoQADownloadPage _demoQADownloadPage;
+        private DemoQaDownloadPage _demoQADownloadPage;
 
         [SetUp]
         public void SetupDemoQAPage()
         {
-            _demoQADownloadPage = new DemoQADownloadPage(Page);
+            _demoQADownloadPage = new DemoQaDownloadPage(Page);
         }
         
         [Category("UI")]
