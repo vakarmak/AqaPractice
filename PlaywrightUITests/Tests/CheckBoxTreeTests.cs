@@ -1,16 +1,17 @@
-﻿using PlaywrightUITests;
+﻿using PlaywrightUiTests;
+using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
 namespace PlaywrigthUITests.Tests
 {
-    internal class CheckBoxTreeTests : UITestFixture
+    internal class CheckBoxTreeTests : UiTestFixture
     {
-        private DemoQACheckBoxPage _demoQACheckBoxPage;
+        private DemoQaCheckBoxPage _demoQACheckBoxPage;
 
         [SetUp]
         public void SetupDemoQAPage()
         {
-            _demoQACheckBoxPage = new DemoQACheckBoxPage(Page);
+            _demoQACheckBoxPage = new DemoQaCheckBoxPage(Page);
         }
         
         [Category("UI")]
@@ -18,7 +19,7 @@ namespace PlaywrigthUITests.Tests
         [Test]
         public async Task VerifyCheckBoxChecked()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.CheckHomeCheckbox();
             await _demoQACheckBoxPage.VerifyHomeChecked();
         }
@@ -26,7 +27,7 @@ namespace PlaywrigthUITests.Tests
         [Test]
         public async Task VerifyDocumentsCheckBoxChecked()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.CheckCheckbox("Documents");
             await _demoQACheckBoxPage.VerifyCheckboxChecked("Documents");
@@ -36,7 +37,7 @@ namespace PlaywrigthUITests.Tests
         [Test]
         public async Task VerifyDocumentsCheckBoxChecked1()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.CheckCheckbox("Documents");
             // This should pass
@@ -55,7 +56,7 @@ namespace PlaywrigthUITests.Tests
         [Description("Check Descktop Checkbox, verify checked")]
         public async Task VerifyDesktopCheckBoxChecked()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.CheckCheckbox("Desktop");
             var documentsCheck = await _demoQACheckBoxPage.VerifyCheckboxChecked("Desktop");
@@ -68,7 +69,7 @@ namespace PlaywrigthUITests.Tests
         [Description("Expand Home > Documents, Check Documents Checkbox. Verify WorkSpace checked")]
         public async Task VerifyWorkSpaceCheckBoxChecked()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.CheckCheckbox("Documents");
             await _demoQACheckBoxPage.OpenDocuments();
@@ -82,7 +83,7 @@ namespace PlaywrigthUITests.Tests
         [Description("Check Documents. Verify text 'You have selected : documents workspace react angular veu office public private classified general'")]
         public async Task VerifyTextOfCheckedDocumentsCheckbox()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.CheckCheckbox("Documents");
             await _demoQACheckBoxPage.CheckDocumentsCheckboxResult();
@@ -94,7 +95,7 @@ namespace PlaywrigthUITests.Tests
         [Description("Expand Home > Documents > WorkSpace, verify React have rct-icon-leaf-close icon")]
         public async Task VerifyReactIcon()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.OpenDocuments();
             await _demoQACheckBoxPage.OpenWorkSpace();
@@ -107,7 +108,7 @@ namespace PlaywrigthUITests.Tests
         [Description("Check Home, Expand Home, verify Desktop, Documents, Downloads checkboxex checked")]
         public async Task VerifyHomeSubCheckboxesChecked()
         {
-            await _demoQACheckBoxPage.GoToDemoQaChecboxPage();
+            await _demoQACheckBoxPage.GoToDemoQaCheckboxPage();
             await _demoQACheckBoxPage.CheckHomeCheckbox();
             await _demoQACheckBoxPage.OpenHome();
             await _demoQACheckBoxPage.VerifyCheckboxChecked("Desktop");

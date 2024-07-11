@@ -2,26 +2,20 @@ using Microsoft.Playwright;
 
 namespace PlaywrightUITests.PageObjects;
 
-internal class DemoQaButtonsPage
+internal class DemoQaButtonsPage(IPage page)
 {
-    private IPage _page;
-    private string elementsPageUrl = "https://demoqa.com/elements";
-    private string buttonsPageUrl = "https://demoqa.com/buttons";
-    
-    public DemoQaButtonsPage(IPage page)
-    {
-        _page = page;
-    }
+    private readonly string _elementsPageUrl = "https://demoqa.com/elements";
+    private readonly string _buttonsPageUrl = "https://demoqa.com/buttons";
 
     public async Task GoToButtonsPage()
     {
-        await _page.GotoAsync(elementsPageUrl);
-        await _page.Locator("li:has-text('Buttons')").ClickAsync();
-        await _page.WaitForURLAsync(buttonsPageUrl);
+        await page.GotoAsync(_elementsPageUrl);
+        await page.Locator("li:has-text('Buttons')").ClickAsync();
+        await page.WaitForURLAsync(_buttonsPageUrl);
     }
 
     public async Task RightClickMeButtonIsFocused()
     {
-        await Assertions.Expect(_page.GetByRole(AriaRole.Button, new() { Name = "Right Click Me", Exact = true })).ToBeFocusedAsync();
+        await Assertions.Expect(page.GetByRole(AriaRole.Button, new() { Name = "Right Click Me", Exact = true })).ToBeFocusedAsync();
     }
 }

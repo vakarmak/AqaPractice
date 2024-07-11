@@ -1,16 +1,17 @@
-﻿using PlaywrightUITests;
+﻿using PlaywrightUiTests;
+using PlaywrightUITests;
 using PlaywrightUITests.PageObjects;
 
 namespace PlaywrigthUITests.Tests
 {
-    internal class RadioButtonsTest : UITestFixture
+    internal class RadioButtonsTest : UiTestFixture
     {
-        private DemoQARadioButtonPage _radioButtonPage;
+        private DemoQaRadioButtonPage _radioButtonPage;
 
         [SetUp]
         public void SetupRadioButtonQAPage()
         {
-            _radioButtonPage = new DemoQARadioButtonPage(Page);
+            _radioButtonPage = new DemoQaRadioButtonPage(Page);
         }
         
         [Category("UI")]
