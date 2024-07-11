@@ -21,5 +21,8 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
         working-directory: PlaywrightUITests
+      - name: PWInstall
+        run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        working-directory: PlaywrightUITests
       - name: Test
         run: dotnet test PlaywrightUITests/PlaywrightUITests.csproj --filter "Category=UI"
