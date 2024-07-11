@@ -1,4 +1,4 @@
-﻿using PlaywrightUITests.PageObjects;
+﻿using PlaywrightUiTests.PageObjects;
 
 namespace PlaywrightUiTests.Tests
 {

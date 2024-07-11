@@ -1,10 +1,8 @@
 ﻿using Microsoft.Playwright;
 using NUnitTests.Features.Drive;
-using PlaywrightUiTests;
-using PlaywrightUITests;
-using PlaywrightUITests.PageObjects;
+using PlaywrightUiTests.PageObjects;
 
-namespace PlaywrigthUITests.Tests
+namespace PlaywrightUiTests.Tests
 {
     [Description("Verify Buttons on buttons page")]
     class ButtonsTestsrun : UiTestFixture
@@ -12,13 +10,13 @@ namespace PlaywrigthUITests.Tests
         private DemoQaButtonsPage _demoQaButtonsPage;
         
         [SetUp]
-        public void SetupDemoQAPage()
+        public void SetupDemoQaPage()
         {
             _demoQaButtonsPage = new DemoQaButtonsPage(Page);
         }
         
-        public byte newstring = DrivePresetup.Accelerate;
-        public byte newstring1 = DrivePresetup.InternalClass.InternalAccelerate;
+        public byte Newstring = DrivePresetup.Accelerate;
+        public byte Newstring1 = DrivePresetup.InternalClass.InternalAccelerate;
 
         // [Test, Description("Verify Click Me button"), Retry(2)]
         public async Task ClickButtonTest()

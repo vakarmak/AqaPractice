@@ -1,4 +1,4 @@
-﻿namespace PlaywrigthUITests.Homework
+﻿namespace PlaywrightUiTests.Homework
 {
     public sealed class CollectionsTests
     {

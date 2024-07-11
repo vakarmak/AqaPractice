@@ -1,4 +1,4 @@
-﻿namespace Homework
+﻿namespace PlaywrightUiTests.Homework
 {
     public sealed class VariablesTests
     {

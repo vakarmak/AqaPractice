@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightUITests.PageObjects;
+namespace PlaywrightUiTests.PageObjects;
 
 internal class DemoQaDynamicPropertiesPage(IPage page)
 {

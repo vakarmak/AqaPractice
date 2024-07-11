@@ -1,8 +1,6 @@
 ﻿using Microsoft.Playwright;
-using PlaywrightUiTests;
-using PlaywrightUITests;
 
-namespace PlaywrigthUITests.Tests
+namespace PlaywrightUiTests.Tests
 {
     [Description("Verify text box on buttons page")]
     class TextBoxTests : UiTestFixture
@@ -138,7 +136,7 @@ namespace PlaywrigthUITests.Tests
 
         [Test]
         [Description("Clear Text Email Input, press submit, text Email should hide")]
-        public async Task VerifyTextClearEmaiIsHide()
+        public async Task VerifyTextClearEmailIsHide()
         {
             // Given I go to DemoQa Elements page
             await Page.GotoAsync("https://demoqa.com/elements");

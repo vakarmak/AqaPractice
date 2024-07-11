@@ -1,17 +1,15 @@
-﻿using PlaywrightUiTests;
-using PlaywrightUITests;
-using PlaywrightUITests.PageObjects;
+﻿using PlaywrightUiTests.PageObjects;
 
-namespace PlaywrigthUITests.Tests
+namespace PlaywrightUiTests.Tests
 {
     internal class DownloadUploadTest : UiTestFixture
     {
-        private DemoQaDownloadPage _demoQADownloadPage;
+        private DemoQaDownloadPage _demoQaDownloadPage;
 
         [SetUp]
-        public void SetupDemoQAPage()
+        public void SetupDemoQaPage()
         {
-            _demoQADownloadPage = new DemoQaDownloadPage(Page);
+            _demoQaDownloadPage = new DemoQaDownloadPage(Page);
         }
         
         [Category("UI")]
@@ -19,16 +17,16 @@ namespace PlaywrigthUITests.Tests
         [Test, Description("Donwload file verify file updated")]
         public async Task VerifyDownload()
         {
-            await _demoQADownloadPage.GoToDemoQaUploadDownloadPage();
-            await _demoQADownloadPage.ClickDownloadButton();
+            await _demoQaDownloadPage.GoToDemoQaUploadDownloadPage();
+            await _demoQaDownloadPage.ClickDownloadButton();
         }
 
         [Test, Description("Donwload file then upload same file")]
         public async Task VerifyDownloadDebug()
         {
-            await _demoQADownloadPage.GoToDemoQaUploadDownloadPage();
-            await _demoQADownloadPage.VerifyFileDownloaded();
-            await _demoQADownloadPage.VerifyDownloadedFileUploadedSucessfully();
+            await _demoQaDownloadPage.GoToDemoQaUploadDownloadPage();
+            await _demoQaDownloadPage.VerifyFileDownloaded();
+            await _demoQaDownloadPage.VerifyDownloadedFileUploadedSucessfully();
         }
     }
 }
