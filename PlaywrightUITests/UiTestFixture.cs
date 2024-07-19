@@ -24,7 +24,6 @@ namespace PlaywrightUiTests
                 {
                     Width = 1920, // Set the width to a common fullscreen width
                     Height = 1080, // Set the height to a common fullscreen height
-                     // Set to true to run the browser in fullscreen mode
                 }
             });
             Page = await context.NewPageAsync();
