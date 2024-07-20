@@ -2,13 +2,11 @@
 using NUnit.Framework;
 using PlaywrightSpecFlow.Bindings;
 using PlaywrightSpecFlow.PageObjects;
-using TechTalk.SpecFlow;
 
 namespace PlaywrightSpecFlow.Tests;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-// [Binding]
 internal class WebTableTests : UiTestFixture
 {
     private WebTablePage? _webTablePage;
