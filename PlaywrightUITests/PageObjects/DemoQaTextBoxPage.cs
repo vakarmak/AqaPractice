@@ -7,7 +7,7 @@ namespace PlaywrightUiTests.PageObjects
         private readonly string _elementsPageUrl = "https://demoqa.com/elements";
         private readonly string _textBoxPageUrl = "https://demoqa.com/text-box";
         private readonly string _fullNamePlaceholder = "Full Name";
-        private readonly string _submitButtonRole = "button";
+        // private readonly string _submitButtonRole = "button";
         private readonly string _submitButtonName = "Submit";
 
         public async Task GoToElementsPage()

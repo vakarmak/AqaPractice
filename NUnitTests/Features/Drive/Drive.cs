@@ -6,8 +6,8 @@
         //Mocked data
         //TODO Refactor by DRY
         private static readonly byte ExpectedAccelerateInput = 255;
-        private static readonly byte Speed = 68;
-        private static readonly byte BreaksInput = 18;
+        // private static readonly byte Speed = 68;
+        // private static readonly byte BreaksInput = 18;
 
         //TODO: Accelerate Test
         [Test, Description("Ensure that Acceleration correctly retrieves the current acceleration")]

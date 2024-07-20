@@ -27,7 +27,6 @@
     <PackageReference Include="SpecFlow" Version="4.0.31-beta" />
     <PackageReference Include="SpecFlow.Actions.Playwright" Version="0.1.285" />
     <PackageReference Include="SpecFlow.NUnit" Version="4.0.31-beta" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="4.0.31-beta" />
   </ItemGroup>
 

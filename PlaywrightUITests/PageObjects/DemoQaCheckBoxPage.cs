@@ -54,7 +54,7 @@ namespace PlaywrightUiTests.PageObjects
             var expectedTextNoSpaces = expectedText.Replace(" ", "");
             
             var result = await page.Locator("#result").TextContentAsync();
-            var resultNoSpaces = result.Replace(" ", "");
+            var resultNoSpaces = result!.Replace(" ", "");
             Assert.That(resultNoSpaces, Is.EqualTo(expectedTextNoSpaces));
         }
         
