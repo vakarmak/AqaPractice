@@ -2,7 +2,7 @@
 {
     public sealed class VariablesTests
     {
-        protected static string Combine(int higth) => "higth equals " + higth;
+        private static string Combine(int higth) => "higth equals " + higth;
 
         [Test]
         [Description("TC-21 higth expected to be bigger than low")]
@@ -13,7 +13,7 @@
             int low = 32;
             int higth = 64;
 
-            Assert.That(32 < 64, "higth is not bigger than low");
+            Assert.That(low < higth, "higth is not bigger than low");
         }
 
         [Test]

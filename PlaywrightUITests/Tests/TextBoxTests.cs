@@ -180,7 +180,7 @@ namespace PlaywrightUiTests.Tests
             var emailInput = Page.GetByPlaceholder("name@example.com");
             var className = await emailInput.GetAttributeAsync("class");
             //Assert
-            Assert.That(className.Contains("field-error"), "Email input is not framed with red color");
+            Assert.That(className!.Contains("field-error"), "Email input is not framed with red color");
         }
 
         //Test Case 10: Text Current Address should be visible
@@ -235,7 +235,7 @@ namespace PlaywrightUiTests.Tests
             var inputArea = Page.GetByPlaceholder("Current Address");
             var isResizable = await inputArea.GetAttributeAsync("class");
             //Assert
-            Assert.That(isResizable.Contains("form-control"), "Current Address input is not resizable.");
+            Assert.That(isResizable!.Contains("form-control"), "Current Address input is not resizable.");
         }
         
         //Test Case 13: Enter "Current Address" in Text Current Address Input, press submit, text Current Address should be "Current Address:Current Address"
@@ -339,7 +339,7 @@ namespace PlaywrightUiTests.Tests
             var inputArea = Page.Locator("#permanentAddress");
             var isResizable = await inputArea.GetAttributeAsync("class");
             //Assert
-            Assert.That(isResizable.Contains("form-control"), "Permanent Address input is not resizable.");
+            Assert.That(isResizable!.Contains("form-control"), "Permanent Address input is not resizable.");
         }
         
         //Test Case 18: Enter "Permanent Address" in Text Permanent Address Input, press submit, text Permanent Address should be "Permanent Address:Permanent Address"
