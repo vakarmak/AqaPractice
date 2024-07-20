@@ -110,13 +110,15 @@ internal class WebTablePage
         await Assertions.Expect(TableFirstRow).Not.ToContainTextAsync("Cierra");
     }
 
-    public async Task VerifyFirstNameColumn()
+    public async Task VerifyFirstNameColumn(string firstName)
     {
+        //do something with firstName
         await Assertions.Expect(FirstNameColumn).ToBeVisibleAsync();
     }
     
-    public async Task VerifyLastNameColumn()
+    public async Task VerifyLastNameColumn(string lastName)
     {
+        //do something with lastName
         await Assertions.Expect(LastNameColumn).ToBeVisibleAsync();
     }
     

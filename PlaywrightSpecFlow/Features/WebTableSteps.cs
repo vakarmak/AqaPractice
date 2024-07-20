@@ -22,10 +22,10 @@ internal sealed class WebTableSteps : UiTestFixture
     [When(@"I see Web Table")]
     public async Task WhenISeeWebTable() => await _webTablePage!.VerifyTableVisible();
     
-    [When(@"I see FirstName """"(.*)"""""" column in a table")]
-    public async Task WhenISeeFirstNameColumn() => await _webTablePage!.VerifyFirstNameColumn();
-    
-    [When(@"I see FirstName """"(.*)"""""" column in a table")]
-    public async Task WhenISeeLastNameColumn() => await _webTablePage!.VerifyLastNameColumn();
+    [Then(@"I see FirstName ""(.*)"" column in a table")]
+    public async Task ThenISeeFirstNameColumn(string firstName) => await _webTablePage!.VerifyFirstNameColumn(firstName);
+
+    [Then(@"I see LastName ""(.*)"" column in a table")]
+    public async Task ThenISeeLastNameColumn(string lastName) => await _webTablePage!.VerifyLastNameColumn(lastName);
     
 }
