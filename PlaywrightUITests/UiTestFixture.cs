@@ -15,16 +15,13 @@ namespace PlaywrightUiTests
             var playwrightDriver = await Playwright.CreateAsync();
             _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false // Set to false to run the browser in non-headless mode
+                Headless = false, // Set to false to run the browser in non-headless mode
+                Args = new[] { "--start-maximized" } // Set the browser to start maximized
             });
             
             var context = await _browser.NewContextAsync(new BrowserNewContextOptions
             {
-                ViewportSize = new ViewportSize
-                {
-                    Width = 1920, // Set the width to a common fullscreen width
-                    Height = 1080, // Set the height to a common fullscreen height
-                }
+                ViewportSize = ViewportSize.NoViewport
             });
             Page = await context.NewPageAsync();
         }
