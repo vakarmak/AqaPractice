@@ -63,7 +63,7 @@ internal class WebTablePage
         await Assertions.Expect(RegistrationPopupTitle).ToBeVisibleAsync();
     }
 
-    public async Task VerifyFirstNameFieldInModaIslVisible()
+    public async Task VerifyFirstNameFieldInModalIslVisible()
     {
         await AddButton.ClickAsync();
         await Assertions.Expect(FirstNameInput).ToBeVisibleAsync();
@@ -110,12 +110,12 @@ internal class WebTablePage
         await Assertions.Expect(TableFirstRow).Not.ToContainTextAsync("Cierra");
     }
 
-    public async Task VerifyFirstNameColumn()
+    public async Task VerifyFirstNameColumn(string firstName)
     {
         await Assertions.Expect(FirstNameColumn).ToBeVisibleAsync();
     }
     
-    public async Task VerifyLastNameColumn()
+    public async Task VerifyLastNameColumn(string lastName)
     {
         await Assertions.Expect(LastNameColumn).ToBeVisibleAsync();
     }
@@ -123,25 +123,5 @@ internal class WebTablePage
     public async Task ClickOnAddButton()
     {
         await AddButton.ClickAsync();
-    }
-
-    public async Task SetFirstName(string firstName)
-    {
-        await FirstNameInput.FillAsync(firstName);
-    }
-
-    public async Task SetLastName(string lastName)
-    {
-        await LastNameInput.FillAsync(lastName);
-    }
-
-    public async Task VerifyFirstName(string firstName)
-    {
-        await Assertions.Expect(TableFirstRow).ToContainTextAsync(firstName);
-    }
-    
-    public async Task SetEmail(string email)
-    {
-        await EmailInput.FillAsync(email);
     }
 }
