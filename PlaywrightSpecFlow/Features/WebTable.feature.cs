@@ -118,11 +118,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I add item to the table")]
-        [NUnit.Framework.TestCaseAttribute("John", "Wick", "JohnWick@wick.com", null)]
-        [NUnit.Framework.TestCaseAttribute("Alice", "Smith", "", null)]
-        [NUnit.Framework.TestCaseAttribute("Bob", "Johnson", "", null)]
-        [NUnit.Framework.TestCaseAttribute("Cierra", "Vega", "", null)]
-        [NUnit.Framework.TestCaseAttribute("Alden", "Cantrell", "", null)]
+        [NUnit.Framework.TestCaseAttribute("Ryan", "Blevins", "cooperjoshua@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Derrick", "Sandoval", "williamhenderson@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Kimberly", "Douglas", "susan34@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Michael", "Clark", "jenniferfinley@gonzalez.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Diana", "Ray", "susan38@long.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Christopher", "White", "fhobbs@brown-ortega.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Tanya", "Larson", "qfigueroa@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Donald", "Johnston", "bennettanita@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Samantha", "Williams", "michael19@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Keith", "Soto", "edwarddorsey@george.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Philip", "Shelton", "stevenmiller@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Mitchell", "French", "hperez@graves.org", null)]
         public void IAddItemToTheTable(string firstName, string lastName, string email, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -147,20 +154,27 @@ this.ScenarioInitialize(scenarioInfo);
 #line 23
  testRunner.When("I see the WebTable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Email"});
+                table1.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", email)});
 #line 24
- testRunner.And("I click Add Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I add the following items:", ((string)(null)), table1, "And ");
 #line hidden
-#line 25
- testRunner.And(string.Format("I set FirstName to \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
-    testRunner.And(string.Format("I set LastName to \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Email"});
+                table2.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", email)});
 #line 27
-    testRunner.And(string.Format("I set Email \"{0}\" in a table", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 28
- testRunner.Then(string.Format("I see FirstName \"{0}\" in a table", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see following items in the table:", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
