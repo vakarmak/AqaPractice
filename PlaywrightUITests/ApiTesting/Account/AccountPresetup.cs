@@ -6,13 +6,13 @@ namespace PlaywrightUiTests.ApiTesting.Account
     {
         internal static string UserName = "Usr" + GetCurrentTimestamp();
         internal static string Password = "Pa$$word1";
-        internal bool AccountCreated;
-        internal string UserId;
+        internal bool AccountCreated = false;
+        internal string? UserId;
 
-        internal UserModel MainUser = new UserModel()
+        internal UserModel MainUser = new()
         {
-            userName = UserName,
-            password = Password
+            UserName = UserName,
+            Password = Password
         };
 
         internal async Task AccountApiPresetup()
@@ -28,7 +28,7 @@ namespace PlaywrightUiTests.ApiTesting.Account
         internal async Task AccountApiCleanup()
         {
             AccountApi account = new AccountApi("https://demoqa.com/");
-            await account.DeleteAccountByID(UserId);
+            await account.DeleteAccountByID(ID: UserId);
         }
 
         internal static string GetCurrentTimestamp()

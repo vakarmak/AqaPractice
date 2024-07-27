@@ -2,11 +2,11 @@
 {
     internal class UserToken
     {
-        public string token { get; set; }
+        public string? Token { get; set; }
 
-        public DateTime expires { get; set; }
+        public DateTime Expires { get; set; }
 
-        public string status { get; set; }
-        public string result { get; set; }
+        public string? Status { get; set; }
+        public string? Result { get; set; }
     }
 }

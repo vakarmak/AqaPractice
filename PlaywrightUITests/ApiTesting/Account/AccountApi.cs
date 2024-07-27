@@ -35,7 +35,7 @@ namespace PlaywrightUiTests.ApiTesting.Account
             var createdUser = JsonConvert.DeserializeObject<User>(responseContent);
 
             Console.WriteLine("User created successfully.");
-            return createdUser!.userID;
+            return createdUser!.UserID;
         }
 
         public async Task<string?> GenerateToken(UserModel model)
@@ -62,7 +62,7 @@ namespace PlaywrightUiTests.ApiTesting.Account
             var responseContent = await response.Content.ReadAsStringAsync();
             var responseToken = JsonConvert.DeserializeObject<UserToken>(responseContent);
 
-            return responseToken!.token;
+            return responseToken!.Token;
         }
 
         public async Task<HttpResponseMessage> GetUserById(string userId, string token)

@@ -2,36 +2,36 @@
 {
     public class User
     {
-        public string userID { get; set; }
+        public string UserID { get; set; }
 
-        public string username { get; set; }
+        public string Username { get; set; }
 
-        public List<Book> books { get; set; }
+        public List<Book> Books { get; set; }
 
         public User()
         {
-            books = new List<Book>();
+            Books = new List<Book>();
         }
     }
 
     public class Book
     {
-        public string isbn { get; set; }
+        public string? Isbn { get; set; }
 
-        public string title { get; set; }
+        public string? Title { get; set; }
 
-        public string subTitle { get; set; }
+        public string? SubTitle { get; set; }
 
-        public string author { get; set; }
+        public string? Author { get; set; }
 
-        public DateTime publish_date { get; set; }
+        public DateTime PublishDate { get; set; }
 
-        public string publisher { get; set; }
+        public string? Publisher { get; set; }
 
-        public int pages { get; set; }
+        public int Pages { get; set; }
 
-        public string description { get; set; }
+        public string? Description { get; set; }
 
-        public string website { get; set; }
+        public string? Website { get; set; }
     }
 }
