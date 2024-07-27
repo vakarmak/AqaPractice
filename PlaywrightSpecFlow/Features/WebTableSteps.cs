@@ -37,11 +37,11 @@ internal sealed class WebTableSteps : UiTestFixture
 
     // Second Scenario
 
-    [When(@"I add the following items:")]
-    public async Task IAddTheFollowingItems(Table table) =>
-        await _webTablePage!.WhenIAddTheFollowingItems(table);
+    [When(@"I add the FisrtName ""(.*)"" and LastName ""(.*)"" and Email ""(.*)"" to the table")]
+    public async Task IAddTheFollowingItems(string firstName, string lastName, string email) =>
+        await _webTablePage!.WhenIAddTheFollowingItems(firstName, lastName, email);
 
-    [Then(@"I should see following items in the table:")]
-    public async Task ThenIShouldSeeTheFollowingItems(Table table) =>
-        await _webTablePage!.ThenIShouldSeeTheFollowingItemsInTheTable(table);
+    [Then(@"I should see the FirstName ""(.*)"" and LastName ""(.*)"" and ""(.*)"" in the table")]
+    public async Task ThenIShouldSeeTheFollowingItems(string firstName, string lastName, string email) =>
+        await _webTablePage!.ThenIShouldSeeTheFollowingItemsInTheTable(firstName, lastName, email);
 }

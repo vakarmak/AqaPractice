@@ -17,14 +17,6 @@ internal class WebTablePage
 
     //Locators
     private ILocator Table => _page!.Locator("//div[@class='rt-table']");
-    private ILocator TableContent => _page!.Locator("//div[@class='rt-tbody']");
-    private ILocator FirstNameColomnHeader => _page!.Locator("//div[contains(text(), 'First Name')]");
-    private ILocator LastNameColomnHeader => _page!.Locator("//div[contains(text(), 'Last Name')]");
-    private ILocator AgeColomnHeader => _page!.Locator("//div[contains(text(), 'Age')]");
-    private ILocator EmailColomnHeader => _page!.Locator("//div[contains(text(), 'Email')]");
-    private ILocator SalaryColomnHeader => _page!.Locator("//div[contains(text(), 'Salary')]");
-    private ILocator DepartmantColomnHeader => _page!.Locator("//div[contains(text(), 'Department')]");
-
 
     private ILocator AddButton => _page!.Locator("//button[@id='addNewRecordButton']");
 
@@ -39,8 +31,6 @@ internal class WebTablePage
 
     private ILocator CloseButton => _page!.Locator("//button[@class='close']");
     private ILocator SubmitButton => _page!.Locator("//button[@id='submit']");
-
-    private ILocator TableRowsPerPage => _page!.Locator("//span[@class='select-wrap -pageSizeOptions']");
 
     //Methods
 
@@ -86,72 +76,43 @@ internal class WebTablePage
 
     //Second Scenario Methods
 
-    public async Task WhenIAddTheFollowingItems(Table table)
+    public async Task WhenIAddTheFollowingItems(string firstName, string lastName, string email)
     {
         Faker faker = new Faker();
 
-        // Iterate through each row in the table
-        foreach (var row in table.Rows)
-        {
-            // Click on Add button
-            await AddButton.ClickAsync();
+        await AddButton.ClickAsync();
 
-            // Set FirstName
-            await FirstNameInput.FillAsync(row["FirstName"]);
+        await FirstNameInput.FillAsync(firstName);
 
-            // Set LastName
-            await LastNameInput.FillAsync(row["LastName"]);
+        await LastNameInput.FillAsync(lastName);
 
-            // Set Email
-            await EmailInput.FillAsync(row["Email"]);
+        await EmailInput.FillAsync(email);
 
-            // Set Age
-            var age = faker.Random.Number(18, 99).ToString();
-            await AgeInput.FillAsync(age);
+        var age = faker.Random.Number(18, 45).ToString();
+        await AgeInput.FillAsync(age);
 
-            // Set Salary
-            var salary = faker.Random.Number(1500, 4000).ToString();
-            await SalaryInput.FillAsync(salary);
+        var salary = faker.Random.Number(1500, 4000).ToString();
+        await SalaryInput.FillAsync(salary);
 
-            // Set Department
-            var department = faker.Commerce.Department();
-            await DepartmantInput.FillAsync(department);
+        var department = faker.Commerce.Department();
+        await DepartmantInput.FillAsync(department);
 
-            // Click on Submit button
-            await SubmitButton.ClickAsync();
-        }
+        await SubmitButton.ClickAsync();
     }
 
-    public async Task ThenIShouldSeeTheFollowingItemsInTheTable(Table table)
+    public async Task<bool> ThenIShouldSeeTheFollowingItemsInTheTable(string firstName, string lastName, string email)
     {
-        var expectedData = table.Rows.Select(row => new
-        {
-            FirstName = row["FirstName"].Trim('\"'),
-            LastName = row["LastName"].Trim('\"'),
-            Email = row["Email"].Trim('\"')
-        }).ToList();
-
-        // Retrieve all rows from the web table
         var rows = await _page!.QuerySelectorAllAsync("rt-tbody");
 
-        foreach (var expectedItem in expectedData)
+        foreach (var row in rows)
         {
-            var itemFound = false;
-            foreach (var row in rows)
+            var rowText = await row.InnerTextAsync();
+            if (rowText.Contains(firstName) && rowText.Contains(lastName) && rowText.Contains(email))
             {
-                var cells = await row.QuerySelectorAllAsync("td");
-                var firstName = await cells[0].InnerTextAsync();
-                var lastName = await cells[1].InnerTextAsync();
-                var email = await cells[2].InnerTextAsync();
-
-                if (firstName.Trim().Equals(expectedItem.FirstName) &&
-                    lastName.Trim().Equals(expectedItem.LastName) &&
-                    email.Trim().Equals(expectedItem.Email))
-                {
-                    itemFound = true;
-                    break;
-                }
+                return true;
             }
+            Assert.Fail($"The row with FirstName: {firstName}, LastName: {lastName}, Email: {email} was not found in the table.");
         }
+        return false;
     }
 }

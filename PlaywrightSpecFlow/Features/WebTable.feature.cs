@@ -128,8 +128,45 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Donald", "Johnston", "bennettanita@gmail.com", null)]
         [NUnit.Framework.TestCaseAttribute("Samantha", "Williams", "michael19@hotmail.com", null)]
         [NUnit.Framework.TestCaseAttribute("Keith", "Soto", "edwarddorsey@george.com", null)]
-        [NUnit.Framework.TestCaseAttribute("Philip", "Shelton", "stevenmiller@yahoo.com", null)]
-        [NUnit.Framework.TestCaseAttribute("Mitchell", "French", "hperez@graves.org", null)]
+        [NUnit.Framework.TestCaseAttribute("Aaron", "Stewart", "aaronstewart@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Jessica", "Powell", "jessicapowell@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Brian", "Scott", "brianscott@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Lisa", "Edwards", "lisaedwards@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Eric", "Russell", "ericrussell@live.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Laura", "Perry", "lauraperry@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Mark", "Watson", "markwatson@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Nancy", "Baker", "nancybaker@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Frank", "Murphy", "frankmurphy@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Gloria", "Bryant", "gloriabryant@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("George", "Evans", "georgeevans@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Linda", "Howard", "lindahoward@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Steven", "Ward", "stevenward@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Amy", "Kelly", "amy.kelly@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Justin", "Flores", "justinflores@live.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Karen", "Morales", "karenmorales@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Paul", "Cooper", "paulcooper@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Laura", "Ward", "lauraward@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Daniel", "Hughes", "danielhughes@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Michelle", "Foster", "michellefoster@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Kevin", "Rivera", "kevinrivera@live.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Angela", "Simmons", "angelasimmons@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Jason", "Butler", "jasonbutler@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Melissa", "Gray", "melissagray@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Charles", "Cooper", "charlescooper@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Amanda", "Stewart", "amandastewart@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Edward", "Sanders", "edwardsanders@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Emily", "Brooks", "emilybrooks@live.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Joshua", "Bell", "joshuabell@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Sarah", "Gonzales", "sarahgonzales@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Daniel", "Ramirez", "danielramirez@hotmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Patricia", "Alexander", "patricia.alexander@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Matthew", "Hamilton", "matthewhamilton@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Barbara", "Graham", "barbara.graham@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("David", "Patterson", "davidpatterson@live.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Jennifer", "Cox", "jennifercox@gmail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Richard", "Wallace", "richardwallace@yahoo.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Stephanie", "Carter", "stephaniecarter@outlook.com", null)]
+        [NUnit.Framework.TestCaseAttribute("Brian", "Woods", "brianwoods@hotmail.com", null)]
         public void IAddItemToTheTable(string firstName, string lastName, string email, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -154,27 +191,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 23
  testRunner.When("I see the WebTable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Email"});
-                table1.AddRow(new string[] {
-                            string.Format("{0}", firstName),
-                            string.Format("{0}", lastName),
-                            string.Format("{0}", email)});
 #line 24
- testRunner.And("I add the following items:", ((string)(null)), table1, "And ");
+ testRunner.And(string.Format("I add the FisrtName \"{0}\" and LastName \"{1}\" and Email \"{2}\" to the table", firstName, lastName, email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Email"});
-                table2.AddRow(new string[] {
-                            string.Format("{0}", firstName),
-                            string.Format("{0}", lastName),
-                            string.Format("{0}", email)});
-#line 27
- testRunner.Then("I should see following items in the table:", ((string)(null)), table2, "Then ");
+#line 25
+ testRunner.Then(string.Format("I should see the FirstName \"{0}\" and LastName \"{1}\" and \"{2}\" in the table", firstName, lastName, email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
