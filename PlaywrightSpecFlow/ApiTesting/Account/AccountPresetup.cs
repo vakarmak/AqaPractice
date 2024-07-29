@@ -1,4 +1,4 @@
-﻿using PlaywrightUiTests.ApiTesting.Models;
+﻿using PlaywrightSpecFlow.ApiTesting.Models;
 
 namespace PlaywrightUiTests.ApiTesting.Account
 {

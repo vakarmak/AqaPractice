@@ -1,4 +1,4 @@
-﻿namespace PlaywrightUiTests.ApiTesting.Models
+﻿namespace PlaywrightSpecFlow.ApiTesting.Models
 {
     internal class UserToken
     {

@@ -1,4 +1,4 @@
-﻿using PlaywrightUiTests.ApiTesting.Models;
+﻿using PlaywrightSpecFlow.ApiTesting.Models;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
