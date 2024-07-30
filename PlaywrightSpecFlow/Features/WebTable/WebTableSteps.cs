@@ -3,7 +3,7 @@ using PlaywrightSpecFlow.Bindings;
 using PlaywrightSpecFlow.PageObjects;
 using TechTalk.SpecFlow;
 
-namespace PlaywrightSpecFlow.Features;
+namespace PlaywrightSpecFlow.Features.WebTable;
 
 [Binding]
 internal sealed class WebTableSteps : UiTestFixture

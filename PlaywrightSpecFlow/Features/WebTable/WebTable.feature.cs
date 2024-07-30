@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PlaywrightSpecFlow.Features
+namespace PlaywrightSpecFlow.Features.WebTable
 {
     using TechTalk.SpecFlow;
     using System;
@@ -39,7 +39,7 @@ namespace PlaywrightSpecFlow.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "WebTableTest", "  As a User i want to add new item to web table,\r\n  so that i can see the new ite" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/WebTable", "WebTableTest", "  As a User i want to add new item to web table,\r\n  so that i can see the new ite" +
                     "m in the table\r\n  and i can delete and edit item.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }

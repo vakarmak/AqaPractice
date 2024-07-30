@@ -1,6 +1,6 @@
 ﻿using PlaywrightSpecFlow.ApiTesting.Models;
 
-namespace PlaywrightUiTests.ApiTesting.Account
+namespace PlaywrightSpecFlow.ApiTesting.Account
 {
     internal class AccountPresetup
     {
