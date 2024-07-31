@@ -21,7 +21,6 @@ namespace PlaywrightSpecFlow.Features.Account
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Account")]
-    [NUnit.Framework.CategoryAttribute("﻿")]
     [NUnit.Framework.CategoryAttribute("ICreateAccountByAPI")]
     public partial class AccountFeature
     {
@@ -29,7 +28,6 @@ namespace PlaywrightSpecFlow.Features.Account
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = new string[] {
-                "﻿",
                 "ICreateAccountByAPI"};
         
 #line 1 "Account.feature"
@@ -39,7 +37,7 @@ namespace PlaywrightSpecFlow.Features.Account
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Account", "Account", "Add account and verify status", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Account", "Account", "Add account and verify status and delete account", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -95,7 +93,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Then("I get success status code from API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I get success status code from API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();

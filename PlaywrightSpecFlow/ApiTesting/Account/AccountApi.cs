@@ -28,7 +28,7 @@ namespace PlaywrightSpecFlow.ApiTesting.Account
             if (response.StatusCode != HttpStatusCode.Created)
             {
                 Console.WriteLine($"Error: {response.StatusCode}");
-                return null;
+                return null!;
             }
 
             var responseContent = await response.Content.ReadAsStringAsync();
@@ -67,19 +67,20 @@ namespace PlaywrightSpecFlow.ApiTesting.Account
 
         public async Task<HttpResponseMessage> GetUserById(string userId, string token)
         {
-            using (var requestMessage =
-            new HttpRequestMessage(HttpMethod.Get, _client.BaseAddress + "Account/v1/User/" + userId))
-            {
-                requestMessage.Headers.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
+            using var requestMessage =
+                new HttpRequestMessage(HttpMethod.Get, _client.BaseAddress + "Account/v1/User/" + userId);
+            requestMessage.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
 
-                return await _client.SendAsync(requestMessage);
-            }
+            return await _client.SendAsync(requestMessage);
         }
 
-        public async Task DeleteAccountByID(string ID)
+        public async Task DeleteAccountById(string id, string token)
         {
-            //TODO: implement
+            using var request = new HttpRequestMessage(HttpMethod.Delete, _client.BaseAddress + "Account/v1/User/" + id);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _client.SendAsync(request);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent), "Account deletion failed.");
         }
     }
 }

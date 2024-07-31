@@ -1,6 +1,6 @@
-﻿﻿@ICreateAccountByAPI
+﻿@ICreateAccountByAPI
 Feature: Account
 
-Add account and verify status
+Add account and verify status and delete account
 Scenario: Add a new account
-	Then I get success status code from API
+	When I get success status code from API

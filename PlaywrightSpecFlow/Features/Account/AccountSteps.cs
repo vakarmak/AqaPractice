@@ -14,26 +14,25 @@ namespace PlaywrightSpecFlow.Features.Account
         }
 
         [BeforeFeature(@"ICreateAccountByAPI")]
-        public static async Task WhenICreateAccountByAPI(FeatureContext featureContext)
+        public static async Task WhenICreateAccountByApi(FeatureContext featureContext)
         {
-            AccountPresetup accountPresetup = new();
-            await accountPresetup.AccountApiPresetup();
-            featureContext["AccountApiPresetup"] = accountPresetup;
+            AccountPreSetup accountPreSetup = new();
+            await accountPreSetup.AccountApiPreSetup();
+            featureContext["AccountApiPreSetup"] = accountPreSetup;
         }
 
-        [Then(@"I get success status code from API")]
-        public void ThenISeeSuccessStatusCode()
+        [When(@"I get success status code from API")]
+        public void WhenIGetSuccessStatusCodeFromApi()
         {
-            var presetup = _featureContext.Get<AccountPresetup>("AccountApiPresetup");
-            Assert.That(presetup.UserId, Is.Not.Null, "Account not created");
+            var preSetup = _featureContext.Get<AccountPreSetup>("AccountApiPreSetup");
+            Assert.That(preSetup.UserId, Is.Not.Null, "Account not created");
         }
-
-        //TODO: add cleanup
+        
         [AfterFeature(@"ICreateAccountByAPI")]
-        public static async Task WhenICleanupAccountByAPI(FeatureContext featureContext)
+        public static async Task WhenICleanupAccountByApi(FeatureContext featureContext)
         {
-            var presetup = featureContext.Get<AccountPresetup>("AccountApiPresetup");
-            // presetup.
+            var preSetup = featureContext.Get<AccountPreSetup>("AccountApiPreSetup");
+            await preSetup.AccountApiCleanup();
         }
     }
 }
