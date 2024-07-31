@@ -28,7 +28,7 @@ public abstract class BaseTest
         Console.WriteLine("OneTimeSetUp: Setting up resources.");
     }
 
-    public async Task<(string? UserId, HttpStatusCode StatusCode)> AddUser(UserModel user)
+    protected async Task<(string? UserId, HttpStatusCode StatusCode)> AddUser(UserModel user)
     {
         var json = JsonConvert.SerializeObject(user);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -75,7 +75,7 @@ public abstract class BaseTest
         return responseToken!.Token;
     }
 
-    internal static string GetCurrentTimestamp()
+    protected static string GetCurrentTimestamp()
     {
         var currentTimestamp = DateTime.UtcNow;
 
