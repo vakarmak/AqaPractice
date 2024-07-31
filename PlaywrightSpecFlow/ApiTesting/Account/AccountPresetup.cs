@@ -2,40 +2,40 @@
 
 namespace PlaywrightSpecFlow.ApiTesting.Account
 {
-    internal class AccountPresetup
+    internal class AccountPreSetup
     {
-        internal static string UserName = "Usr" + GetCurrentTimestamp();
-        internal static string Password = "Pa$$word1";
-        internal bool AccountCreated = false;
+        private static readonly string UserName = "Usr" + GetCurrentTimestamp();
+        private const string Password = "Pa$$word1";
         internal string? UserId;
 
-        internal UserModel MainUser = new()
+        private readonly UserModel _mainUser = new()
         {
-            UserName = UserName,
-            Password = Password
+            userName = UserName,
+            password = Password
         };
 
-        internal async Task AccountApiPresetup()
+        internal async Task AccountApiPreSetup()
         {
-            AccountApi account = new AccountApi("https://demoqa.com/");
-            UserId = await account.AddUserAndGetId(MainUser);
-            var token = await account.GenerateToken(MainUser);
-            var user = await account.GetUserById(UserId, token);
+            var account = new AccountApi("https://demoqa.com/");
+            UserId = await account.AddUserAndGetId(_mainUser);
+            var token = await account.GenerateToken(_mainUser);
+            var user = await account.GetUserById(UserId, token!);
             var body = await user.Content.ReadAsStringAsync();
             Console.WriteLine("user info: " + body);
         }
 
         internal async Task AccountApiCleanup()
         {
-            AccountApi account = new AccountApi("https://demoqa.com/");
-            await account.DeleteAccountByID(ID: UserId);
+            var account = new AccountApi("https://demoqa.com/");
+            var token = await account.GenerateToken(_mainUser);
+            await account.DeleteAccountById(UserId!, token!);
         }
 
-        internal static string GetCurrentTimestamp()
+        private static string GetCurrentTimestamp()
         {
-            DateTime currentTimestamp = DateTime.UtcNow;
+            var currentTimestamp = DateTime.UtcNow;
 
-            string timestamp = currentTimestamp.ToString("u");
+            var timestamp = currentTimestamp.ToString("u");
 
             timestamp = Regex.Replace(timestamp, @"\D", "");
 
