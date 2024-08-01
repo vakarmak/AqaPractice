@@ -26,20 +26,7 @@ public class AsyncHomework
     public void TestGetNumberWithExceptionAsync()
     {
         // TODO: Verify that GetNumberWithExceptionAsync() throws InvalidOperationException
-        Exception? caughtException = null;
-
-        try
-        {
-            var task = GetNumberWithExceptionAsync();
-            task.Wait();
-        }
-        catch (AggregateException ex)
-        {
-            caughtException = ex.InnerExceptions[0];
-        }
-
-        Assert.That(caughtException, Is.TypeOf<InvalidOperationException>());
-    
-        Assert.That(caughtException.Message, Is.EqualTo("An error occurred while fetching the number."));
+        var ex = Assert.ThrowsAsync<InvalidOperationException>(async () => await GetNumberWithExceptionAsync());
+        Assert.That(ex.Message, Is.EqualTo("An error occurred while fetching the number."));
     }
 }
