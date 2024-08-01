@@ -4,7 +4,7 @@
 
 obj/
 bin/
-PlaywrightUITests/Api/Scripts/
+Scripts/*.ps1
 
 AQAPractice.sln.DotSettings.user
 .editorconfig
