@@ -32,11 +32,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Api\Scripts\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NUnitTests\NUnitTests.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Scripts\DeleteUser.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Remove="Api\Scripts\DeleteUser.ps1" />
+  </ItemGroup>
+
 
 </Project>

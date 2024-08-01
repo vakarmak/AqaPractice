@@ -4,5 +4,7 @@
 
 obj/
 bin/
+Scripts/*.ps1
 
 AQAPractice.sln.DotSettings.user
+.editorconfig
