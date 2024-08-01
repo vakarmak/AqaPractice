@@ -2,19 +2,14 @@
 {
     public class User
     {
-        public string UserID { get; set; }
+        public string UserId { get; set; } = null!;
 
-        public string Username { get; set; }
+        public string Username { get; set; } = null!;
 
-        public List<Book> Books { get; set; }
-
-        public User()
-        {
-            Books = new List<Book>();
-        }
+        public List<Book> Books { get; set; } = new();
     }
 
-    public class Book
+    public abstract class Book
     {
         public string? Isbn { get; set; }
 
