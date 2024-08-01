@@ -35,7 +35,7 @@ namespace PlaywrightSpecFlow.ApiTesting.Account
             var createdUser = JsonConvert.DeserializeObject<User>(responseContent);
 
             Console.WriteLine("User created successfully.");
-            return createdUser!.UserID;
+            return createdUser!.UserId;
         }
 
         public async Task<string?> GenerateToken(UserModel model)
