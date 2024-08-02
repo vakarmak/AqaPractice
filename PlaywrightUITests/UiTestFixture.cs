@@ -15,7 +15,7 @@ namespace PlaywrightUiTests
             var playwrightDriver = await Playwright.CreateAsync();
             _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false, // Set to false to run the browser in non-headless mode
+                Headless = false, // Set false to run the browser in non-headless mode
                 Args = new[] { "--start-maximized" } // Set the browser to start maximized
             });
             
