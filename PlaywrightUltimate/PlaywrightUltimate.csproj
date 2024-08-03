@@ -33,4 +33,8 @@
     <Using Include="System.Threading.Tasks" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include=".auth\state.json" />
+  </ItemGroup>
+
 </Project>

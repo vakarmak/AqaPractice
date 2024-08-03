@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
 namespace PlaywrightUltimate.PageObjects
 {
@@ -13,13 +8,81 @@ namespace PlaywrightUltimate.PageObjects
 
         // Locators
 
-
-
+        private ILocator EmailInput => page.Locator("input[name='user[email]']");
+        private ILocator PasswordInput => page.Locator("input[name='user[password]']");
+        private ILocator SignInButton => page.Locator("button[type='submit']");
+        
+        private ILocator MyDashboard => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "My Dashboard" });
+        private ILocator ViewMoreCoursesLink => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "View more courses" });
+        private ILocator ProductsSearch => page.GetByPlaceholder("Search");
+        
+        private ILocator UserMenu => page.GetByLabel("Toggle menu");
+        private ILocator DashboardHeader(string userName) => page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = $"      Welcome back, {userName}!    " });
+        
         // Methods
 
         public async Task GoToUltimateQaPage()
         {
             await page.GotoAsync(UltimateQaTargetPage);
+            Assert.That(page.Url, Is.EqualTo("https://courses.ultimateqa.com/users/sign_in"));
+        }
+
+        public async Task SignIn(string email, string password)
+        {
+            await EmailInput.FillAsync(email);
+            await PasswordInput.FillAsync(password);
+            await SignInButton.ClickAsync();
+        }
+        
+        public async Task ViewMoreCourses()
+        {
+            await ViewMoreCoursesLink.ClickAsync();
+            Assert.That(page.Url, Is.EqualTo("https://courses.ultimateqa.com/collections"));
+        }
+
+        public async Task SearchForProductAndVerifyResult(string productName)
+        {
+            await ProductsSearch.FillAsync(productName);
+            await page.Keyboard.PressAsync("Enter");
+            await Task.Delay(1500);
+
+            var elements = await page.QuerySelectorAllAsync(".products__list-item");
+
+            Assert.That(elements, Is.Not.Empty, $"No products were found for search term '{productName}'.");
+
+            var productFound = false;
+
+            foreach (var element in elements)
+            {
+                var text = await element.InnerTextAsync();
+
+                if (!text.Contains(productName)) continue;
+                productFound = true;
+                break;
+            }
+
+            Assert.That(productFound, $"Product '{productName}' was not found in the list.");
+        }
+        
+        public async Task GoToMyDashboard()
+        {
+            await MyDashboard.ClickAsync();
+            Assert.That(page.Url, Is.EqualTo("https://courses.ultimateqa.com/enrollments"));
+        }
+        
+        public async Task VerifyDashBoardWelcomeText()
+        {
+            var userName = (await UserMenu.InnerTextAsync()).Trim();
+            
+            var dashboardHeaderElement = await DashboardHeader(userName).InnerTextAsync();
+            
+            Assert.That(dashboardHeaderElement, Is.EqualTo($"Welcome back, {userName}!"));
+        }
+        
+        public async Task ClickOnUserMenu()
+        {
+            await UserMenu.ClickAsync();
+            await Assertions.Expect(UserMenu).ToHaveAttributeAsync("aria-expanded", "true");
         }
     }
 }
