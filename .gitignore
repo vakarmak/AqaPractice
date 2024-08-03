@@ -5,6 +5,7 @@
 obj/
 bin/
 PlaywrightUITests/Api/Scripts/
+PlaywrightUltimate/.auth/
 
 AQAPractice.sln.DotSettings.user
 .editorconfig
