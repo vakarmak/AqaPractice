@@ -26,9 +26,9 @@ namespace PlaywrightUltimate.PageObjects
             await ViewMoreCoursesLink.ClickAsync();
         }
 
-        public void VerifyPageUrl(string pageUrl)
+        public async Task VerifyPageUrl(string pageUrl)
         {
-            Assert.That(page.Url, Is.EqualTo($"https://courses.ultimateqa.com/{pageUrl}"));
+            await Assertions.Expect(page).ToHaveURLAsync($"https://courses.ultimateqa.com/{pageUrl}");
         }
 
         public async Task SearchForProductAndVerifyResult(string productName)

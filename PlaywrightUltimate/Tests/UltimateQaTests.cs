@@ -68,7 +68,7 @@ namespace PlaywrightUltimate.Tests
         public async Task VerifyProductByFilter()
         {
             await _ultimateQaPage.ViewMoreCourses();
-            _ultimateQaPage.VerifyPageUrl("collections");
+            await _ultimateQaPage.VerifyPageUrl("collections");
             await _ultimateQaPage.SearchForProductAndVerifyResult("Selenium");
             await _ultimateQaPage.GoToMyDashboard();
             await _ultimateQaPage.VerifyDashBoardWelcomeText();
