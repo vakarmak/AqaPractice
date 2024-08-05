@@ -2,7 +2,6 @@
 
 namespace PlaywrightUltimate
 {
-    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     internal class UiTestFixture
     {

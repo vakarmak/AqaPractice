@@ -6,7 +6,7 @@ namespace PlaywrightUltimate.Tests
     internal class UltimateQaTests
     {
         private UltimateQaPage _ultimateQaPage;
-
+        
         private IPage Page { get; set; }
         private IBrowser _browser;
         private IBrowserContext _context;
@@ -61,11 +61,6 @@ namespace PlaywrightUltimate.Tests
                 });
             }
 
-            SetupUltimateQaPage();
-        }
-
-        private void SetupUltimateQaPage()
-        {
             _ultimateQaPage = new UltimateQaPage(Page);
         }
 
@@ -73,6 +68,7 @@ namespace PlaywrightUltimate.Tests
         public async Task VerifyProductByFilter()
         {
             await _ultimateQaPage.ViewMoreCourses();
+            _ultimateQaPage.VerifyPageUrl("collections");
             await _ultimateQaPage.SearchForProductAndVerifyResult("Selenium");
             await _ultimateQaPage.GoToMyDashboard();
             await _ultimateQaPage.VerifyDashBoardWelcomeText();

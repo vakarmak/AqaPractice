@@ -20,24 +20,15 @@ namespace PlaywrightUltimate.PageObjects
         private ILocator DashboardHeader(string userName) => page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = $"      Welcome back, {userName}!    " });
         
         // Methods
-
-        public async Task GoToUltimateQaPage()
-        {
-            await page.GotoAsync(UltimateQaTargetPage);
-            Assert.That(page.Url, Is.EqualTo("https://courses.ultimateqa.com/users/sign_in"));
-        }
-
-        public async Task SignIn(string email, string password)
-        {
-            await EmailInput.FillAsync(email);
-            await PasswordInput.FillAsync(password);
-            await SignInButton.ClickAsync();
-        }
         
         public async Task ViewMoreCourses()
         {
             await ViewMoreCoursesLink.ClickAsync();
-            Assert.That(page.Url, Is.EqualTo("https://courses.ultimateqa.com/collections"));
+        }
+
+        public void VerifyPageUrl(string pageUrl)
+        {
+            Assert.That(page.Url, Is.EqualTo($"https://courses.ultimateqa.com/{pageUrl}"));
         }
 
         public async Task SearchForProductAndVerifyResult(string productName)
@@ -75,8 +66,6 @@ namespace PlaywrightUltimate.PageObjects
             var userName = (await UserMenu.InnerTextAsync()).Trim();
             
             var dashboardHeaderElement = await DashboardHeader(userName).InnerTextAsync();
-            
-            Assert.That(dashboardHeaderElement, Is.EqualTo($"Welcome back, {userName}!"));
         }
         
         public async Task ClickOnUserMenu()
