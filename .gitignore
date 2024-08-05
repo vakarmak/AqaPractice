@@ -4,8 +4,8 @@
 
 obj/
 bin/
-PlaywrightUITests/Api/Scripts/
-PlaywrightUltimate/.auth/
+Scripts/
+.auth/
 
 AQAPractice.sln.DotSettings.user
 .editorconfig
