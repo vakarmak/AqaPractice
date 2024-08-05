@@ -63,6 +63,7 @@ public class LambdaHomework
     [Test]
     public void Test_Multiply_Function_To_Lambda()
     {
+
         var lambda = (int x, int y) => x * y;
         var result = lambda(3, 4);
         Assert.That(result, Is.EqualTo(12));
@@ -77,7 +78,7 @@ public class LambdaHomework
         var result = lambda(input);
         Assert.That(result, Is.EqualTo(expected).AsCollection);
     }
-
+  
     [Test]
     public void Test_Where_Lambda()
     {
@@ -102,7 +103,7 @@ public class LambdaHomework
             }
          Assert.That(filteredList.Count, Is.EqualTo(2));
      }
-     
+  
     [Test]
     public void Test_All_Lambda()
     {
@@ -110,12 +111,14 @@ public class LambdaHomework
         var notEmpty = myList.All(e => e.Length > 0);
         Assert.That(notEmpty, Is.True);
     }
+  
     // TODO: Uncomment and implement without lambda functions
-    
+
     [Test]
     public void Test_All_NoLambda()
     {
         var myList = new List<string> { "one", "two", "three", "four" };
+
         bool result = true;
         foreach (var item in myList)
         {
