@@ -1,5 +1,4 @@
 ﻿using Microsoft.Playwright;
-using PlaywrightSolar.PageObjects;
 
 namespace PlaywrightSolar.PageObjects;
 
@@ -26,7 +25,7 @@ public class SolarPanelsPage(IPage page)
 
     // Methods
     
-    public async Task VerifySolarPanelsPage()
+    public async Task VerifySolarPanelsPageTitle()
     {
         await Assertions.Expect(PageTitle).ToBeVisibleAsync();
     }

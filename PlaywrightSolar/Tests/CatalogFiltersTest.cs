@@ -19,7 +19,7 @@ internal class CatalogFiltersTest : UiTestFixture
         await _solarShopPage.GoToSolarTechnologyShopPage();
         await _solarShopPage.GoToSolarPanels();
         var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.VerifySolarPanelsPage();
+        await solarPanelsPage.VerifySolarPanelsPageTitle();
         await solarPanelsPage.OpenProductFilter();
         
         // Act
@@ -38,7 +38,7 @@ internal class CatalogFiltersTest : UiTestFixture
         await _solarShopPage.GoToSolarTechnologyShopPage();
         await _solarShopPage.GoToSolarPanels();
         var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.VerifySolarPanelsPage();
+        await solarPanelsPage.VerifySolarPanelsPageTitle();
         await solarPanelsPage.OpenProductFilter();
         
         // Act
