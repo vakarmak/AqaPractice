@@ -6,9 +6,9 @@ public class SolarShopPage(IPage page)
 {
     private const string SolarShopPageUrl = "https://solartechnology.com.ua/shop";
     private const string SolarPanelsPageUrl = "https://solartechnology.com.ua/shop/solar-panels";
-    
-    // Locators
-    private ILocator SolarPanels => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Сонячні панелі" });
+    private const string InvertersPageUrl = "https://solartechnology.com.ua/shop/inverters";
+
+    private const string BasketPageUrl = "https://solartechnology.com.ua/cart";
     
     // Methods
     public async Task GoToSolarTechnologyShopPage()
@@ -20,7 +20,19 @@ public class SolarShopPage(IPage page)
     
     public async Task GoToSolarPanels()
     {
-        await SolarPanels.ClickAsync();
+        await page.GotoAsync(SolarPanelsPageUrl);
         Assert.That(page.Url, Is.EqualTo(SolarPanelsPageUrl), "Failed to navigate to Solar Panels page");
+    }
+    
+    public async Task GoToInvertersPage()
+    {
+        await page.GotoAsync(InvertersPageUrl);
+        Assert.That(page.Url, Is.EqualTo(InvertersPageUrl), "Failed to navigate to Inverters page");
+    }
+    
+    public async Task GoToBasketPage()
+    {
+        await page.GotoAsync(BasketPageUrl);
+        Assert.That(page.Url, Is.EqualTo(BasketPageUrl), "Failed to navigate to Basket page");
     }
 }
