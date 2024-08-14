@@ -20,15 +20,16 @@ internal class ShoppingCardTest : UiTestFixture
         await _solarShopPage.GoToInvertersPage();
         var invertersPage = new InvertersPage(Page);
         var basketPage = new BasketPage(Page);
-        var expectedProductName = await invertersPage.AddProductToBasket();
+        
         
         // Act
         await invertersPage.VerifyInvertersPageTitle();
-        await invertersPage.AddProductToBasket();
-        await basketPage.VerifyBasketPageTitle();
+        var expectedProductName = await invertersPage.AddProductToBasket();
         await basketPage.VerifyAddedProductToBasket(expectedProductName);
+        await basketPage.VerifyBasketPageTitle();
+        await basketPage.DeleteProductFromBasket();
         
         // Assert
-       
+        Assert.That(Page.Url, Is.EqualTo("https://solartechnology.com.ua/shop"));
     }
 }
