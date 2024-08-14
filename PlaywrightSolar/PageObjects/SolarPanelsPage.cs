@@ -25,7 +25,7 @@ public class SolarPanelsPage(IPage page)
 
     // Methods
     
-    public async Task VerifySolarPanelsPageTitle()
+    public async Task SolarPanelsPageOpened()
     {
         await Assertions.Expect(PageTitle).ToBeVisibleAsync();
     }
@@ -67,7 +67,7 @@ public class SolarPanelsPage(IPage page)
         }
     }
 
-    public async Task<bool> VerifyManufacturerFilterResult(string manufacturer)
+    public async Task<bool> ManufacturerFilterResult(string manufacturer)
     {
         await Task.Delay(2000);
         var results = await page.QuerySelectorAllAsync(".col.s12.m6.l4.xl3.prod-holder");
@@ -100,7 +100,7 @@ public class SolarPanelsPage(IPage page)
         }
     }
 
-    public async Task<bool> VerifyPanelTypeFilterResult(string panelType)
+    public async Task<bool> PanelTypeFilterResult(string panelType)
     {
         await Task.Delay(2000);
 

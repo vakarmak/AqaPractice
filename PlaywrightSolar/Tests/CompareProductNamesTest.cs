@@ -21,8 +21,8 @@ internal class CompareProductNamesTest : UiTestFixture
         var inverterPage = new InvertersPage(Page);
         
         // Act
-        var expectedProductName = await inverterPage.GoToInverterDetailsPage();
-        var actualProductName = await inverterPage.GetProductDetailsName(expectedProductName);
+        var expectedProductName = await inverterPage.ExtractProductNameFromSelectedProduct();
+        var actualProductName = await inverterPage.ExtractProductNameFromProductDetails(expectedProductName);
 
         // Assert
         Assert.That(expectedProductName, Is.EqualTo(actualProductName), "Product names are not the same");

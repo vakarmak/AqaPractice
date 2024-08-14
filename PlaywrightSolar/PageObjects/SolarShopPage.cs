@@ -16,7 +16,7 @@ public class SolarShopPage(IPage page)
         
     }
     
-    public async Task GoToSolarPanels()
+    public async Task GoToSolarPanelsPage()
     {
         await page.GotoAsync(SolarPanelsPageUrl);
         Assert.That(page.Url, Is.EqualTo(SolarPanelsPageUrl), "Failed to navigate to Solar Panels page");

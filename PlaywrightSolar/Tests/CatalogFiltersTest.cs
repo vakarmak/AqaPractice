@@ -17,18 +17,18 @@ internal class CatalogFiltersTest : UiTestFixture
     {
         // Arrange
         await _solarShopPage.GoToSolarTechnologyShopPage();
-        await _solarShopPage.GoToSolarPanels();
+        await _solarShopPage.GoToSolarPanelsPage();
         var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.VerifySolarPanelsPageTitle();
+        await solarPanelsPage.SolarPanelsPageOpened();
         await solarPanelsPage.OpenProductFilter();
         
         // Act
         // Possible values: "Abi-Solar", "C&T Solar", "JA Solar", "Jinko Solar", "SOLA", "Ulica Solar", "Yingli Solar"
         await solarPanelsPage.FilterByManufacturer("Abi-Solar");
-        var isAbiSolarFilterResultCorrect = await solarPanelsPage.VerifyManufacturerFilterResult("Abi-Solar");
+        var isManufacturerFilterResultCorrect = await solarPanelsPage.ManufacturerFilterResult("Abi-Solar");
         
         // Assert
-        Assert.That(isAbiSolarFilterResultCorrect, Is.True, "Filtered result is not correct");
+        Assert.That(isManufacturerFilterResultCorrect, Is.True, "Filtered result is not correct");
     }
     
     [Test]
@@ -36,15 +36,15 @@ internal class CatalogFiltersTest : UiTestFixture
     {
         // Arrange
         await _solarShopPage.GoToSolarTechnologyShopPage();
-        await _solarShopPage.GoToSolarPanels();
+        await _solarShopPage.GoToSolarPanelsPage();
         var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.VerifySolarPanelsPageTitle();
+        await solarPanelsPage.SolarPanelsPageOpened();
         await solarPanelsPage.OpenProductFilter();
         
         // Act
         // Possible values: "Монокристал", "Полікристал"
         await solarPanelsPage.FilterByPanelType("Полікристал");
-        var isPanelTypeFilterResultCorrect = await solarPanelsPage.VerifyPanelTypeFilterResult("Полікристал");
+        var isPanelTypeFilterResultCorrect = await solarPanelsPage.PanelTypeFilterResult("Полікристал");
         
         // Assert
         Assert.That(isPanelTypeFilterResultCorrect, Is.True, "Filtered result is not correct");

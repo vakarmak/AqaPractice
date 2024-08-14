@@ -9,7 +9,7 @@ public class BasketPage(IPage page)
         page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Товари у кошику" });
 
     // Methods
-    public async Task VerifyBasketPageTitle()
+    public async Task BasketPageOpened()
     {
         await Task.Delay(2000);
         await Assertions.Expect(PageTitle).ToBeVisibleAsync();

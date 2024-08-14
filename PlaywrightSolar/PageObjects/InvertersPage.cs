@@ -48,7 +48,7 @@ public class InvertersPage(IPage page)
         return match.Success ? match.Value.Trim() : "Product name not found";
     }
 
-    public async Task<string> GoToInverterDetailsPage()
+    public async Task<string> ExtractProductNameFromSelectedProduct()
     {
         var listOfProductsOnPage = await page.QuerySelectorAllAsync(".col.s12.m6.l4.xl3.prod-holder");
         var random = new Random();
@@ -65,7 +65,7 @@ public class InvertersPage(IPage page)
         return productNameText;
     }
 
-    public async Task<string> GetProductDetailsName(string expectedProductName)
+    public async Task<string> ExtractProductNameFromProductDetails(string expectedProductName)
     {
         var productDetailsCard =
             await page.QuerySelectorAsync("//div[@class='col s12 m6 l5 xl4 black-text right-block']");

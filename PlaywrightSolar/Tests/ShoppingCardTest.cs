@@ -26,7 +26,7 @@ internal class ShoppingCardTest : UiTestFixture
         await invertersPage.VerifyInvertersPageTitle();
         var expectedProductName = await invertersPage.AddProductToBasket();
         await basketPage.VerifyAddedProductToBasket(expectedProductName);
-        await basketPage.VerifyBasketPageTitle();
+        await basketPage.BasketPageOpened();
         await basketPage.DeleteProductFromBasket();
         
         // Assert
