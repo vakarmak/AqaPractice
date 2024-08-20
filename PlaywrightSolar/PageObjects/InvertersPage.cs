@@ -4,83 +4,65 @@ namespace PlaywrightSolar.PageObjects;
 
 public class InvertersPage(IPage page)
 {
-    // Locators
-    private ILocator InvertersPageTitle =>
-        page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Сонячні інвертори" });
-
-    private ILocator PlaceOrderButton =>
-        page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Оформити замовлення" });
-
+    private const string InvertersPageUrl = "https://solartechnology.com.ua/shop/inverters";
 
     // Methods
-    public async Task VerifyInvertersPageTitle()
+    public async Task GoToInvertersPage()
     {
-        await Task.Delay(1500);
-        await Assertions.Expect(InvertersPageTitle).ToBeVisibleAsync();
+        await page.GotoAsync(InvertersPageUrl);
+        Assert.That(page.Url, Is.EqualTo(InvertersPageUrl), "Failed to navigate to Inverters page");
     }
 
-    public async Task<string> AddProductToBasket()
+    public async Task GetProductFromList()
     {
-        var listOfProductsOnPage = await page.QuerySelectorAllAsync(".col.s12.m6.l4.xl3.prod-holder");
-        var random = new Random();
-        var randomIndex = random.Next(listOfProductsOnPage.Count);
-        var selectedProductFromPage = listOfProductsOnPage[randomIndex];
-
-        var nameOfSelectedProduct = await selectedProductFromPage.QuerySelectorAsync(".list-product-title");
-
-        var textNameOfSelectedProduct = await nameOfSelectedProduct!.InnerTextAsync();
-        var productNameText = ExtractProductNameText(textNameOfSelectedProduct);
-
-        await Task.Delay(1000);
-
-        var addToCartButton = await selectedProductFromPage.QuerySelectorAsync(".add-product-to-cart");
+        var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
+        var selectedProduct = listOfProductsOnPage[0];
+        var addToCartButton = await selectedProduct.QuerySelectorAsync(".add-product-to-cart");
         await addToCartButton!.ClickAsync();
-        await PlaceOrderButton.ClickAsync();
-
-        return productNameText;
     }
 
-    private static string ExtractProductNameText(string text)
+    public async Task<string> GetProductName()
     {
-        var regex = new Regex(@"[A-Za-z0-9\s\-]+");
+        var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
+        var selectedProduct = listOfProductsOnPage[5];
+        var selectedProductName = await selectedProduct.QuerySelectorAsync(".card-content");
+        var productName = await selectedProductName!.InnerTextAsync();
 
-        var match = regex.Match(text);
-        return match.Success ? match.Value.Trim() : "Product name not found";
+        return ExtractProductNameFromCard(productName);
+    }
+    
+    private static string ExtractProductNameFromCard(string rawProductDetails)
+    {
+        var regex = new Regex(@"^[^\s].*", RegexOptions.Multiline);
+        var match = regex.Match(rawProductDetails);
+
+        return match.Success ? match.Value.Trim() :
+            string.Empty;
+    }
+    
+    public async Task GoToProductDetails()
+    {
+        var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
+        var selectedProduct = listOfProductsOnPage[5];
+        await selectedProduct.ClickAsync();
     }
 
-    public async Task<string> ExtractProductNameFromSelectedProduct()
+    public async Task<string> GetProductNameFromProductDetails()
     {
-        var listOfProductsOnPage = await page.QuerySelectorAllAsync(".col.s12.m6.l4.xl3.prod-holder");
-        var random = new Random();
-        var randomIndex = random.Next(listOfProductsOnPage.Count);
-        var selectedProductFromPage = listOfProductsOnPage[randomIndex];
+        await page.WaitForSelectorAsync(".right-block");
+        
+        var productDetails = await page.QuerySelectorAsync(".right-block");
+        var productDetailsName = await productDetails!.QuerySelectorAsync("h1");
+        var productName = await productDetailsName!.InnerTextAsync();
 
-        var nameOfSelectedProduct = await selectedProductFromPage.QuerySelectorAsync(".list-product-title");
-
-        var textNameOfSelectedProduct = await nameOfSelectedProduct!.InnerTextAsync();
-        var productNameText = ExtractProductNameText(textNameOfSelectedProduct);
-
-        await selectedProductFromPage!.ClickAsync();
-
-        return productNameText;
+        return ExtractProductNameFromProductDetails(productName);
     }
-
-    public async Task<string> ExtractProductNameFromProductDetails(string expectedProductName)
+    
+    private static string ExtractProductNameFromProductDetails(string rawProductDetails)
     {
-        var productDetailsCard =
-            await page.QuerySelectorAsync("//div[@class='col s12 m6 l5 xl4 black-text right-block']");
-        var actualProductName = await productDetailsCard!.InnerTextAsync();
-        var actualProductNameText = ExtractActualProductName(actualProductName, expectedProductName);
+        var regex = new Regex(@"\b(?:\S+\s+){2}(.*)", RegexOptions.IgnoreCase);
+        var match = regex.Match(rawProductDetails);
 
-        return actualProductNameText;
-    }
-
-    private static string ExtractActualProductName(string text, string target)
-    {
-        var regex = new Regex($@"^.*?({Regex.Escape(target)}).*?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-        var match = regex.Match(text);
-
-        return match.Success ? match.Groups[1].Value.Trim() : "Product name not found";
+        return match.Success ? match.Groups[1].Value.Trim() : string.Empty;
     }
 }

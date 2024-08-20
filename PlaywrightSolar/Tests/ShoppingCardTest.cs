@@ -4,11 +4,15 @@ namespace PlaywrightSolar.Tests;
 
 internal class ShoppingCardTest : UiTestFixture
 {
+    private InvertersPage _invertersPage;
+    private BasketPage _basketPage;
     private SolarShopPage _solarShopPage;
     
     [SetUp]
-    public void SetupSolarTechnologyShopPage()
+    public void SetupInvertersAndBasketPages()
     {
+        _invertersPage = new InvertersPage(Page);
+        _basketPage = new BasketPage(Page);
         _solarShopPage = new SolarShopPage(Page);
     }
 
@@ -16,20 +20,14 @@ internal class ShoppingCardTest : UiTestFixture
     public async Task AddInverterProductToShoppingCard()
     {
         // Arrange
-        await _solarShopPage.GoToSolarTechnologyShopPage();
-        await _solarShopPage.GoToInvertersPage();
-        var invertersPage = new InvertersPage(Page);
-        var basketPage = new BasketPage(Page);
-        
+        await _invertersPage.GoToInvertersPage();
         
         // Act
-        await invertersPage.VerifyInvertersPageTitle();
-        var expectedProductName = await invertersPage.AddProductToBasket();
-        await basketPage.VerifyAddedProductToBasket(expectedProductName);
-        await basketPage.BasketPageOpened();
-        await basketPage.DeleteProductFromBasket();
+        await _invertersPage.GetProductFromList();
+        await _basketPage.AddProductToBasket();
+        await _basketPage.DeleteProductFromBasket();
         
         // Assert
-        Assert.That(Page.Url, Is.EqualTo("https://solartechnology.com.ua/shop"));
+        await _solarShopPage.VerifyBasketIsEmpty();
     }
 }

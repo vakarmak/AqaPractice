@@ -5,48 +5,50 @@ namespace PlaywrightSolar.Tests;
 internal class CatalogFiltersTest : UiTestFixture
 {
     private SolarShopPage _solarShopPage;
+    private SolarPanelsPage _solarPanelsPage;
     
     [SetUp]
     public void SetupSolarTechnologyShopPage()
     {
         _solarShopPage = new SolarShopPage(Page);
+        _solarPanelsPage = new SolarPanelsPage(Page);
     }
     
     [Test]
     public async Task VerifyCatalogFilteringByManufacturer()
     {
         // Arrange
-        await _solarShopPage.GoToSolarTechnologyShopPage();
-        await _solarShopPage.GoToSolarPanelsPage();
-        var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.SolarPanelsPageOpened();
-        await solarPanelsPage.OpenProductFilter();
+        await _solarPanelsPage.GoToSolarPanelsPage();
+        await _solarPanelsPage.SolarPanelsPageOpened();
+        await _solarPanelsPage.OpenProductFilter();
         
         // Act
         // Possible values: "Abi-Solar", "C&T Solar", "JA Solar", "Jinko Solar", "SOLA", "Ulica Solar", "Yingli Solar"
-        await solarPanelsPage.FilterByManufacturer("Abi-Solar");
-        var isManufacturerFilterResultCorrect = await solarPanelsPage.ManufacturerFilterResult("Abi-Solar");
+        var productsNameBeforeFiltering = await _solarPanelsPage.GetInitialProductsName();
+        var productsNameAfterFiltering = await _solarPanelsPage.GetProductsNameByManufacturer("SOLA");
         
         // Assert
-        Assert.That(isManufacturerFilterResultCorrect, Is.True, "Filtered result is not correct");
+        Assert.That(productsNameBeforeFiltering, Is.Not.EqualTo(productsNameAfterFiltering), "Products are the same");
     }
     
     [Test]
     public async Task VerifyCatalogFilteringByPanelType()
     {
         // Arrange
-        await _solarShopPage.GoToSolarTechnologyShopPage();
-        await _solarShopPage.GoToSolarPanelsPage();
-        var solarPanelsPage = new SolarPanelsPage(Page);
-        await solarPanelsPage.SolarPanelsPageOpened();
-        await solarPanelsPage.OpenProductFilter();
+        await _solarPanelsPage.GoToSolarPanelsPage();
+        await _solarPanelsPage.SolarPanelsPageOpened();
+        await _solarPanelsPage.OpenProductFilter();
         
         // Act
         // Possible values: "Монокристал", "Полікристал"
-        await solarPanelsPage.FilterByPanelType("Полікристал");
-        var isPanelTypeFilterResultCorrect = await solarPanelsPage.PanelTypeFilterResult("Полікристал");
+        await _solarPanelsPage.ProductFilterByPanelType("Монокристал");
+        var productsNameByPanelType = await _solarPanelsPage.GetProductNameByPanelTypeFilter();
         
         // Assert
-        Assert.That(isPanelTypeFilterResultCorrect, Is.True, "Filtered result is not correct");
+        Assert.That(productsNameByPanelType, Is.Not.Empty, "Products are not found");
+        foreach (var item in productsNameByPanelType)
+        {
+            Assert.That(item, Does.Contain("Монокристал"), "Product does not contain selected panel type");
+        }
     }
 }

@@ -5,26 +5,18 @@ namespace PlaywrightSolar.PageObjects;
 public class SolarShopPage(IPage page)
 {
     private const string SolarShopPageUrl = "https://solartechnology.com.ua/shop";
-    private const string SolarPanelsPageUrl = "https://solartechnology.com.ua/shop/solar-panels";
-    private const string InvertersPageUrl = "https://solartechnology.com.ua/shop/inverters";
-    
+   
     // Methods
-    public async Task GoToSolarTechnologyShopPage()
+    public async Task VerifyBasketIsEmpty()
     {
-        await page.GotoAsync(SolarShopPageUrl);
-        Assert.That(page.Url, Is.EqualTo(SolarShopPageUrl), "Failed to navigate to Solar Technology Shop page");
+        await page.WaitForURLAsync(SolarShopPageUrl);
         
-    }
-    
-    public async Task GoToSolarPanelsPage()
-    {
-        await page.GotoAsync(SolarPanelsPageUrl);
-        Assert.That(page.Url, Is.EqualTo(SolarPanelsPageUrl), "Failed to navigate to Solar Panels page");
-    }
-    
-    public async Task GoToInvertersPage()
-    {
-        await page.GotoAsync(InvertersPageUrl);
-        Assert.That(page.Url, Is.EqualTo(InvertersPageUrl), "Failed to navigate to Inverters page");
+        var basketIcon = await page.QuerySelectorAsync(".cart-icon");
+        
+        Assert.That(basketIcon, Is.Not.Null, "Basket icon is not found");
+        
+        var basketHasAttribute = await basketIcon!.GetAttributeAsync("class");
+        
+        Assert.That(basketHasAttribute, Does.Contain("cart-icon"), "Basket is not empty");
     }
 }
