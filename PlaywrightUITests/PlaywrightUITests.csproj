@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\Scripts\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 

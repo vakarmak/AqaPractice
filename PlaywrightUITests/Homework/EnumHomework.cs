@@ -1,4 +1,4 @@
-﻿namespace PlaywrightUiTests.Homework17;
+﻿namespace PlaywrightUiTests.Homework;
 
 public abstract class EnumHomework
 {

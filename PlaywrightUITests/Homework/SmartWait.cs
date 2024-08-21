@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace PlaywrightUiTests.HomeworkLesson26;
+namespace PlaywrightUiTests.Homework;
 
 internal class SmartWait : UiTestFixture
 {

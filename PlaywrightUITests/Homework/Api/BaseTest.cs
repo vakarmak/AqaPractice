@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using PlaywrightUiTests.Api.Models;
+using PlaywrightUiTests.Homework.Api.Models;
 
-namespace PlaywrightUiTests.Api;
+namespace PlaywrightUiTests.Homework.Api;
 
 public abstract class BaseTest
 {

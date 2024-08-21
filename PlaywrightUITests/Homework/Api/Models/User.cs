@@ -1,4 +1,4 @@
-﻿namespace PlaywrightUiTests.Api.Models;
+﻿namespace PlaywrightUiTests.Homework.Api.Models;
 
 public class User
 {

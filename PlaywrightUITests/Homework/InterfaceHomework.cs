@@ -1,4 +1,4 @@
-﻿namespace PlaywrightUiTests.Homework21;
+﻿namespace PlaywrightUiTests.Homework;
 
 public interface IMyWebDriver
 {

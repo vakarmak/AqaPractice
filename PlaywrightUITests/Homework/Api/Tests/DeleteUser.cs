@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Net;
-using PlaywrightUiTests.Api.Models;
+using PlaywrightUiTests.Homework.Api.Models;
 
-namespace PlaywrightUiTests.Api.Tests;
+namespace PlaywrightUiTests.Homework.Api.Tests;
 
 public class DeleteUser() : BaseTest("https://demoqa.com/")
 {

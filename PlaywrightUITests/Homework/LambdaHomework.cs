@@ -1,4 +1,4 @@
-﻿namespace PlaywrightUiTests.Homework19;
+﻿namespace PlaywrightUiTests.Homework;
 
 [TestFixture]
 public class LambdaHomework
