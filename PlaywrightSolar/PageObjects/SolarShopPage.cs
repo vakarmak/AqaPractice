@@ -5,18 +5,17 @@ namespace PlaywrightSolar.PageObjects;
 public class SolarShopPage(IPage page)
 {
     private const string SolarShopPageUrl = "https://solartechnology.com.ua/shop";
+    
+    // Locators
+    private ILocator BasketIcon => page.Locator(".cart-icon");
    
     // Methods
     public async Task VerifyBasketIsEmpty()
     {
         await page.WaitForURLAsync(SolarShopPageUrl);
+
+        await Assertions.Expect(BasketIcon).ToBeVisibleAsync();
         
-        var basketIcon = await page.QuerySelectorAsync(".cart-icon");
-        
-        Assert.That(basketIcon, Is.Not.Null, "Basket icon is not found");
-        
-        var basketHasAttribute = await basketIcon!.GetAttributeAsync("class");
-        
-        Assert.That(basketHasAttribute, Does.Contain("cart-icon"), "Basket is not empty");
+        await Assertions.Expect(BasketIcon).ToHaveAttributeAsync("class", "cart-icon ");
     }
 }

@@ -21,14 +21,14 @@ public class InvertersPage(IPage page)
         await addToCartButton!.ClickAsync();
     }
 
-    public async Task<string> GetProductName()
+    public async Task<string> GetProductName(int productIndex)
     {
         var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
-        var selectedProduct = listOfProductsOnPage[5];
-        var selectedProductName = await selectedProduct.QuerySelectorAsync(".card-content");
-        var productName = await selectedProductName!.InnerTextAsync();
+        var selectedProduct = listOfProductsOnPage[productIndex];
+        var selectedProductContent = await selectedProduct.QuerySelectorAsync(".card-content");
+        var rawProductName = await selectedProductContent!.InnerTextAsync();
 
-        return ExtractProductNameFromCard(productName);
+        return ExtractProductNameFromCard(rawProductName);
     }
     
     private static string ExtractProductNameFromCard(string rawProductDetails)
@@ -40,10 +40,10 @@ public class InvertersPage(IPage page)
             string.Empty;
     }
     
-    public async Task GoToProductDetails()
+    public async Task GoToProductDetails(int productIndex)
     {
         var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
-        var selectedProduct = listOfProductsOnPage[5];
+        var selectedProduct = listOfProductsOnPage[productIndex];
         await selectedProduct.ClickAsync();
     }
 
@@ -53,9 +53,9 @@ public class InvertersPage(IPage page)
         
         var productDetails = await page.QuerySelectorAsync(".right-block");
         var productDetailsName = await productDetails!.QuerySelectorAsync("h1");
-        var productName = await productDetailsName!.InnerTextAsync();
+        var rawProductDetailsName = await productDetailsName!.InnerTextAsync();
 
-        return ExtractProductNameFromProductDetails(productName);
+        return ExtractProductNameFromProductDetails(rawProductDetailsName);
     }
     
     private static string ExtractProductNameFromProductDetails(string rawProductDetails)

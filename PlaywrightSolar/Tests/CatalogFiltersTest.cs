@@ -24,8 +24,9 @@ internal class CatalogFiltersTest : UiTestFixture
         
         // Act
         // Possible values: "Abi-Solar", "C&T Solar", "JA Solar", "Jinko Solar", "SOLA", "Ulica Solar", "Yingli Solar"
-        var productsNameBeforeFiltering = await _solarPanelsPage.GetInitialProductsName();
-        var productsNameAfterFiltering = await _solarPanelsPage.GetProductsNameByManufacturer("SOLA");
+        var productsNameBeforeFiltering = await _solarPanelsPage.GetProductsName();
+        await _solarPanelsPage.FilterProductsByManufacturer("SOLA");
+        var productsNameAfterFiltering = await _solarPanelsPage.GetProductsName();
         
         // Assert
         Assert.That(productsNameBeforeFiltering, Is.Not.EqualTo(productsNameAfterFiltering), "Products are the same");
@@ -41,8 +42,8 @@ internal class CatalogFiltersTest : UiTestFixture
         
         // Act
         // Possible values: "Монокристал", "Полікристал"
-        await _solarPanelsPage.ProductFilterByPanelType("Монокристал");
-        var productsNameByPanelType = await _solarPanelsPage.GetProductNameByPanelTypeFilter();
+        await _solarPanelsPage.FilterProductsByPanelType("Монокристал");
+        var productsNameByPanelType = await _solarPanelsPage.GetProductsName();
         
         // Assert
         Assert.That(productsNameByPanelType, Is.Not.Empty, "Products are not found");

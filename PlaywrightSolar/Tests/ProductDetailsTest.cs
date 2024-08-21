@@ -7,7 +7,7 @@ internal class ProductDetailsTest : UiTestFixture
     private InvertersPage _invertersPage;
     
     [SetUp]
-    public void SetupSolarTechnologyShopPage()
+    public void SetupInvertersPage()
     {
         _invertersPage = new InvertersPage(Page);
     }
@@ -19,8 +19,8 @@ internal class ProductDetailsTest : UiTestFixture
         await _invertersPage.GoToInvertersPage();
         
         // Act
-        var productNameFromCard = await _invertersPage.GetProductName();
-        await _invertersPage.GoToProductDetails();
+        var productNameFromCard = await _invertersPage.GetProductName(5);
+        await _invertersPage.GoToProductDetails(5);
         var productNameFromProductDetails = await _invertersPage.GetProductNameFromProductDetails();
 
         // Assert

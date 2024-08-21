@@ -11,7 +11,7 @@ public class BasketPage(IPage page)
         page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Оформити замовлення" });
     
     // Methods
-    public async Task AddProductToBasket()
+    public async Task PlaceOrder()
     {
         await PlaceOrderButton.ClickAsync();
         Assert.That(page.Url, Is.EqualTo(CartPageUrl), "Failed to navigate to Cart page");

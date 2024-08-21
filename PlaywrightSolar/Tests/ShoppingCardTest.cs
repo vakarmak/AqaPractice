@@ -9,7 +9,7 @@ internal class ShoppingCardTest : UiTestFixture
     private SolarShopPage _solarShopPage;
     
     [SetUp]
-    public void SetupInvertersAndBasketPages()
+    public void SetupPages()
     {
         _invertersPage = new InvertersPage(Page);
         _basketPage = new BasketPage(Page);
@@ -24,7 +24,7 @@ internal class ShoppingCardTest : UiTestFixture
         
         // Act
         await _invertersPage.GetProductFromList();
-        await _basketPage.AddProductToBasket();
+        await _basketPage.PlaceOrder();
         await _basketPage.DeleteProductFromBasket();
         
         // Assert

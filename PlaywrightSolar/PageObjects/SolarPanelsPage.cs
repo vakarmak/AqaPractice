@@ -46,7 +46,7 @@ public class SolarPanelsPage(IPage page)
         await Task.Delay(1000);
     }
     
-    public async Task<List<string>> GetInitialProductsName()
+    public async Task<List<string>> GetProductsName()
     {
         await page.WaitForSelectorAsync(".prod-holder");
         var results = await page.QuerySelectorAllAsync(".prod-holder");
@@ -54,31 +54,19 @@ public class SolarPanelsPage(IPage page)
         return resultText.ToList();
     }
     
-    public async Task<List<string>> GetProductsNameByManufacturer(string manufacturer)
+    public async Task FilterProductsByManufacturer(string manufacturer)
     {
         var manufacturerLocator = _filterLocators[manufacturer];
         await manufacturerLocator.ClickAsync();
         
         await Task.Delay(2000); // Other waiters are not working, everything that is related to the selector does not fit because selector always available, and stays the same
-        
-        var results = await page.QuerySelectorAllAsync(".prod-holder");
-        var resultText = await Task.WhenAll(results.Select(async result => await result.InnerTextAsync()));
-        return resultText.ToList();
     }
 
-    public async Task ProductFilterByPanelType(string panelType)
+    public async Task FilterProductsByPanelType(string panelType)
     {
         var panelTypeLocator = _panelTypeFiltersLocator[panelType];
-        await panelTypeLocator.ClickAsync();
-    }
-
-    public async Task<List<string>> GetProductNameByPanelTypeFilter()
-    {
-        await Task.Delay(2000); // same issue as with GetProductsNameByManufacturer
+        await panelTypeLocator.CheckAsync();
         
-        var results = await page.QuerySelectorAllAsync(".prod-holder");
-        var resultText = await Task.WhenAll(results.Select(async result => await result.InnerTextAsync()));
-        
-        return resultText.ToList();
+        await Task.Delay(2000);
     }
 }
