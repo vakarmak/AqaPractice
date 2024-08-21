@@ -19,8 +19,11 @@ internal class SmartWait : UiTestFixture
         var titlesBefore = await Page.Locator(".product-card__title").AllInnerTextsAsync();
         await Page.GetByLabel("Filter for Blue").ClickAsync();
 
-        await Page.WaitForTimeoutAsync(5000); // Replace this line with smart waiting
-
+        await Page.WaitForFunctionAsync(
+            "oldTitle => document.querySelector('.product-card__title').innerText !== oldTitle",
+            titlesBefore.First()
+        ); // Replace this line with smart waiting
+       
         var titlesAfter = await Page.Locator(".product-card__title").AllInnerTextsAsync();
 
         //Assert
@@ -37,9 +40,9 @@ internal class SmartWait : UiTestFixture
         //Act
         var titlesBefore = await Page.Locator(".item_name").AllInnerTextsAsync();
         await Page.Locator("li").Filter(new LocatorFilterOptions { HasText = "Кросівки" }).Locator("label").ClickAsync();
-
-        await Page.WaitForTimeoutAsync(5000); // Replace this line with smart waiting
-
+        
+        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle); // Replace this line with smart waiting
+        
         var titlesAfter = await Page.Locator(".item_name").AllInnerTextsAsync();
 
         //Assert
