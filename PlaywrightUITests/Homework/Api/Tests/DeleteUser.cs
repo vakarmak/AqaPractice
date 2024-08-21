@@ -28,8 +28,8 @@ public class DeleteUser() : BaseTest("https://demoqa.com/")
         Assert.That(token, Is.Not.Null, "Token was not generated.");
 
         var projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
-        var scriptsDirectory = Path.Combine(projectDirectory, "PlaywrightUITests", "Api", "Scripts");
-        var scriptPath = Path.Combine(projectDirectory, "PlaywrightUITests", "Api", "Scripts", "DeleteUser.ps1");
+        var scriptsDirectory = Path.Combine(projectDirectory, "PlaywrightUITests", "Homework", "Api", "Scripts");
+        var scriptPath = Path.Combine(projectDirectory, "PlaywrightUITests", "Homework", "Api", "Scripts", "DeleteUser.ps1");
         
         if (!Directory.Exists(scriptsDirectory))
         {
