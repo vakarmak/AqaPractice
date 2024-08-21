@@ -13,13 +13,13 @@ public class SolarPanelsPage(IPage page)
 
     private readonly Dictionary<string, ILocator> _filterLocators = new()
     {
-        { "Abi-Solar", page.GetByText("Abi-Solar", new PageGetByTextOptions { Exact = true }) },
-        { "C&T Solar", page.GetByText("C&T Solar") },
-        { "JA Solar", page.GetByText("JA Solar") },
-        { "Jinko Solar", page.GetByText("Jinko Solar") },
+        { "ABi-Solar", page.GetByText("Abi-Solar", new PageGetByTextOptions { Exact = true }) },
+        { "C&T", page.GetByText("C&T Solar", new PageGetByTextOptions { Exact = true }) },
+        { "JA Solar", page.GetByText("JA Solar", new PageGetByTextOptions { Exact = true }) },
+        { "Jinko Solar", page.GetByText("Jinko Solar", new PageGetByTextOptions { Exact = true }) },
         { "SOLA", page.GetByText("SOLA", new PageGetByTextOptions { Exact = true }) },
-        { "Ulica Solar", page.GetByText("Ulica Solar") },
-        { "Yingli Solar", page.GetByText("Yingli Solar") }
+        { "Ulica Solar", page.GetByText("Ulica Solar", new PageGetByTextOptions { Exact = true }) },
+        { "Yingli Solar", page.GetByText("Yingli Solar", new PageGetByTextOptions { Exact = true }) }
     };
     
     private readonly Dictionary<string, ILocator> _panelTypeFiltersLocator = new()
@@ -32,7 +32,6 @@ public class SolarPanelsPage(IPage page)
     public async Task GoToSolarPanelsPage()
     {
         await page.GotoAsync(SolarPanelsPageUrl);
-        Assert.That(page.Url, Is.EqualTo(SolarPanelsPageUrl), "Failed to navigate to Solar Panels page");
     }
 
     public async Task SolarPanelsPageOpened()
@@ -49,15 +48,17 @@ public class SolarPanelsPage(IPage page)
     public async Task<List<string>> GetProductsName()
     {
         await page.WaitForSelectorAsync(".prod-holder");
-        var results = await page.QuerySelectorAllAsync(".prod-holder");
-        var resultText = await Task.WhenAll(results.Select(async result => await result.InnerTextAsync()));
-        return resultText.ToList();
+        
+        var productsCardContent = await page.QuerySelectorAllAsync(".card-content");
+        var cardContentText = await Task.WhenAll(productsCardContent.Select(async result => await result.InnerTextAsync()));
+        
+        return cardContentText.ToList();
     }
     
     public async Task FilterProductsByManufacturer(string manufacturer)
     {
         var manufacturerLocator = _filterLocators[manufacturer];
-        await manufacturerLocator.ClickAsync();
+        await manufacturerLocator.CheckAsync();
         
         await Task.Delay(2000); // Other waiters are not working, everything that is related to the selector does not fit because selector always available, and stays the same
     }

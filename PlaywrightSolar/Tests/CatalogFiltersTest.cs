@@ -4,13 +4,11 @@ namespace PlaywrightSolar.Tests;
 
 internal class CatalogFiltersTest : UiTestFixture
 {
-    private SolarShopPage _solarShopPage;
     private SolarPanelsPage _solarPanelsPage;
     
     [SetUp]
-    public void SetupSolarTechnologyShopPage()
+    public void SetupSolarPanelsPage()
     {
-        _solarShopPage = new SolarShopPage(Page);
         _solarPanelsPage = new SolarPanelsPage(Page);
     }
     
@@ -23,13 +21,18 @@ internal class CatalogFiltersTest : UiTestFixture
         await _solarPanelsPage.OpenProductFilter();
         
         // Act
-        // Possible values: "Abi-Solar", "C&T Solar", "JA Solar", "Jinko Solar", "SOLA", "Ulica Solar", "Yingli Solar"
-        var productsNameBeforeFiltering = await _solarPanelsPage.GetProductsName();
-        await _solarPanelsPage.FilterProductsByManufacturer("SOLA");
-        var productsNameAfterFiltering = await _solarPanelsPage.GetProductsName();
-        
+        // Possible values: "ABi-Solar", "C&T", "JA Solar", "Jinko Solar", "SOLA", "Ulica Solar", "Yingli Solar"
+        // var productsNameBeforeFiltering = await _solarPanelsPage.GetProductsName();
+        await _solarPanelsPage.FilterProductsByManufacturer("JA Solar");
+        var productsNameList = await _solarPanelsPage.GetProductsName();
+
         // Assert
-        Assert.That(productsNameBeforeFiltering, Is.Not.EqualTo(productsNameAfterFiltering), "Products are the same");
+        Assert.That(productsNameList, Is.Not.Empty, "Products list is empty");
+        foreach (var item in productsNameList)
+        {
+            Assert.That(item, Does.Contain("JA Solar"), "Filtered products do not contain selected manufacturer");
+        }
+
     }
     
     [Test]
