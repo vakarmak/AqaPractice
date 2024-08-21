@@ -17,10 +17,11 @@ internal class ProductDetailsTest : UiTestFixture
     {
         // Arrange
         await _invertersPage.GoToInvertersPage();
+        const int productIndex = 5;
         
         // Act
-        var productNameFromCard = await _invertersPage.GetProductName(5);
-        await _invertersPage.GoToProductDetails(5);
+        var productNameFromCard = await _invertersPage.GetProductName(productIndex);
+        await _invertersPage.GoToProductDetails(productIndex);
         var productNameFromProductDetails = await _invertersPage.GetProductNameFromProductDetails();
 
         // Assert

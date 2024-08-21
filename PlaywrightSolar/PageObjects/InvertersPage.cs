@@ -13,10 +13,10 @@ public class InvertersPage(IPage page)
         Assert.That(page.Url, Is.EqualTo(InvertersPageUrl), "Failed to navigate to Inverters page");
     }
 
-    public async Task GetProductFromList()
+    public async Task SelectProduct(int productIndex)
     {
         var listOfProductsOnPage = await page.QuerySelectorAllAsync(".prod-holder");
-        var selectedProduct = listOfProductsOnPage[0];
+        var selectedProduct = listOfProductsOnPage[productIndex];
         var addToCartButton = await selectedProduct.QuerySelectorAsync(".add-product-to-cart");
         await addToCartButton!.ClickAsync();
     }

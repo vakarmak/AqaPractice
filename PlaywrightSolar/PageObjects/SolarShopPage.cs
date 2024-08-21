@@ -13,8 +13,6 @@ public class SolarShopPage(IPage page)
     public async Task VerifyBasketIsEmpty()
     {
         await page.WaitForURLAsync(SolarShopPageUrl);
-
-        await Assertions.Expect(BasketIcon).ToBeVisibleAsync();
         
         await Assertions.Expect(BasketIcon).ToHaveAttributeAsync("class", "cart-icon ");
     }

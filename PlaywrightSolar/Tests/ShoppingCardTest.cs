@@ -21,9 +21,10 @@ internal class ShoppingCardTest : UiTestFixture
     {
         // Arrange
         await _invertersPage.GoToInvertersPage();
+        const int productIndex = 0;
         
         // Act
-        await _invertersPage.GetProductFromList();
+        await _invertersPage.SelectProduct(productIndex);
         await _basketPage.PlaceOrder();
         await _basketPage.DeleteProductFromBasket();
         
