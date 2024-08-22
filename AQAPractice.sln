@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaywrightSpecFlow", "Playw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaywrightUltimate", "PlaywrightUltimate\PlaywrightUltimate.csproj", "{E9E75E42-F587-4C1C-92EE-38F8B2817A07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaywrightSolar", "PlaywrightSolar\PlaywrightSolar.csproj", "{1A5AB4F5-EC47-41E9-B60E-BD115ED89AE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaywrightSolar", "PlaywrightSolar\PlaywrightSolar.csproj", "{1A5AB4F5-EC47-41E9-B60E-BD115ED89AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaywrightEvershop", "PlaywrightEvershop\PlaywrightEvershop.csproj", "{50200805-6300-4167-84B9-2A13598DE76A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{1A5AB4F5-EC47-41E9-B60E-BD115ED89AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A5AB4F5-EC47-41E9-B60E-BD115ED89AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A5AB4F5-EC47-41E9-B60E-BD115ED89AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50200805-6300-4167-84B9-2A13598DE76A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50200805-6300-4167-84B9-2A13598DE76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50200805-6300-4167-84B9-2A13598DE76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50200805-6300-4167-84B9-2A13598DE76A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
