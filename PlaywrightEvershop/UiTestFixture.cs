@@ -1,12 +1,11 @@
 ﻿using Microsoft.Playwright;
 
-namespace PlaywrightEvershop;
+namespace PlaywrightEverShop;
 
-[Parallelizable(ParallelScope.Self)]
 [TestFixture]
 internal class UiTestFixture
 {
-    private IPage Page { get; set; }
+    protected IPage Page { get; private set; }
     private IBrowser _browser;
 
     [SetUp]
@@ -24,6 +23,7 @@ internal class UiTestFixture
             ViewportSize = ViewportSize.NoViewport
         });
         Page = await context.NewPageAsync();
+        Page.SetDefaultTimeout(10000);
     }
 
     [TearDown]
