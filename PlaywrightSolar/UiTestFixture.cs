@@ -15,7 +15,7 @@ namespace PlaywrightSolar
             var playwrightDriver = await Playwright.CreateAsync();
             _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false, // Set false to run the browser in non-headless mode
+                Headless = true, // Set false to run the browser in non-headless mode
                 Args = ["--start-maximized"] // Set the browser to start maximized
             });
 
