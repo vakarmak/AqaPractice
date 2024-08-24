@@ -8,8 +8,6 @@ public class EverShopCatalogPage(IPage page)
 
     // Locators
     private ILocator Men => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Men", Exact = true });
-    private ILocator Size(string size) => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = $"{size}" });
-    private ILocator Color(string color) => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = $"{color}" });
     
     // Methods
     public async Task GoToMenPage()
