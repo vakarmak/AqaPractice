@@ -6,13 +6,13 @@ namespace PlaywrightEverShop.Tests;
 
 internal class ProductCheckoutTest : UiTestFixture
 {
-    private EverShopMenPage _everShopMenPage;
+    private EverShopCatalogPage _everShopCatalogPage;
     private EverShopCartPage _everShopCartPage;
 
     [SetUp]
     public new void Setup()
     {
-        _everShopMenPage = new EverShopMenPage(Page);
+        _everShopCatalogPage = new EverShopCatalogPage(Page);
         _everShopCartPage = new EverShopCartPage(Page);
     }
 
@@ -29,18 +29,15 @@ internal class ProductCheckoutTest : UiTestFixture
             }
         });
 
-        await _everShopMenPage.GoToMenPage();
+        await _everShopCatalogPage.GoToMenPage();
         const int productIndex = 0;
         
         // Act
-        await _everShopMenPage.SelectProduct(productIndex);
-        var productNameFromPage = await _everShopMenPage.GetProductName();
-        await Page.WaitForTimeoutAsync(1500); // Cannot pick size without waiting
-        await _everShopMenPage.SelectSizeOption();
-        await Page.WaitForTimeoutAsync(1500); // Cannot pick color without waiting
-        await _everShopMenPage.SelectColorOption();
-        await Page.WaitForTimeoutAsync(1500); // Cannot add to cart without waiting
-        await _everShopMenPage.AddProductToCart();
+        await _everShopCatalogPage.SelectProduct(productIndex);
+        var productNameFromPage = await _everShopCatalogPage.GetProductName();
+        await _everShopCatalogPage.SelectSizeOption("S");
+        await _everShopCatalogPage.SelectColorOption("Black");
+        await _everShopCatalogPage.AddProductToCart();
         await _everShopCartPage.GoToCartPage();
         var productNameFromCart = await _everShopCartPage.GetProductName();
         await _everShopCartPage.MakeCheckout();

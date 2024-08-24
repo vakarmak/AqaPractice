@@ -24,11 +24,6 @@ public class EverShopCartPage(IPage page)
         var productCard = await page.QuerySelectorAsync(".product-info");
         var productName = await productCard!.InnerTextAsync();
         
-        return ExtractProductName(productName).ToLower();
-    }
-    
-    private static string ExtractProductName(string productName)
-    {
-        return productName.Split("\n")[0];
+        return productName.Split("\n")[0].ToLower();
     }
 }

@@ -2,15 +2,14 @@
 
 namespace PlaywrightEverShop.PageObjects;
 
-public class EverShopMenPage(IPage page)
+public class EverShopCatalogPage(IPage page)
 {
     private const string EverShopMainPageUrl = "https://demo.evershop.io/";
 
     // Locators
     private ILocator Men => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Men", Exact = true });
-    private ILocator Size => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "S" });
-    private ILocator Color => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Green" });
-    private ILocator AddToCartButton => page.Locator("//span[contains(text(), 'ADD TO CART')]");
+    private ILocator Size(string size) => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = $"{size}" });
+    private ILocator Color(string color) => page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = $"{color}" });
     
     // Methods
     public async Task GoToMenPage()
@@ -25,6 +24,8 @@ public class EverShopMenPage(IPage page)
         
         var products = await page.QuerySelectorAllAsync(".listing-tem");
         await products[productIndex].ClickAsync();
+
+        await page.WaitForLoadStateAsync(LoadState.Load);
     }
 
     public async Task<string> GetProductName()
@@ -35,20 +36,26 @@ public class EverShopMenPage(IPage page)
         return productNameText.ToLower();
     }
 
-    public async Task SelectSizeOption()
+    public async Task SelectSizeOption(string size)
     {
-        await Size.ClickAsync();
+        var sizeElement =  page.Locator($"//a[contains(text(), '{size}')]");
+        await sizeElement.ClickAsync();
+        
+        await page.WaitForFunctionAsync("document.querySelector('li.selected') !== null");
     }
     
-    public async Task SelectColorOption()
+    public async Task SelectColorOption(string color)
     {
-        await Color.ClickAsync();
+        var colorElement =  page.Locator($"//a[contains(text(), '{color}')]");
+        await colorElement.ClickAsync();
+        
+        await page.WaitForFunctionAsync("document.querySelector('li.selected') !== null");
     }
     
     public async Task AddProductToCart()
     {
-        await page.WaitForSelectorAsync(".button");
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
         
-        await AddToCartButton.ClickAsync();
+        await page.Locator(".button").ClickAsync();
     }
 }
