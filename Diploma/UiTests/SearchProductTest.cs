@@ -1,3 +1,4 @@
+using Diploma.PageObjects;
 using Microsoft.Playwright;
 
 namespace Diploma.UiTests;
@@ -5,17 +6,33 @@ namespace Diploma.UiTests;
 [TestFixture]
 internal class SearchProductTest : UiTestFixture
 {
-    [Test]
-    public async Task SimpleTest()
+    private HomePage _homePage;
+    private ProductsPage _productsPage;
+
+    [SetUp]
+    public void SetUpPages()
     {
-        await Page.GotoAsync("https://automationexercise.com/login");
-
-        await Page.FillAsync("input[name='email']", UserData["email"]);
-        await Page.FillAsync("input[name='password']", UserData["password"]);
-        await Page.ClickAsync("button[type='submit']");
-
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-        await Page.GotoAsync("https://automationexercise.com/products");
+        _homePage = new HomePage(Page);
+        _productsPage = new ProductsPage(Page);
+    }
+    
+    [Test]
+    public async Task SearchProduct()
+    {
+        // Arrange
+        var homePage = new HomePage(Page);
+        var productsPage = new ProductsPage(Page);
+        const string productName = "Top";
+        
+        // Act
+        await homePage.GoToHomePage();
+        await productsPage.GoToProductsPage();
+        await productsPage.VerifyProductsPageVisible();
+        await productsPage.SearchProduct(productName);
+        await productsPage.VerifySearchedProductsVisible();
+        var searchedProductNames = await productsPage.GetProductName();
+        
+        // Assert
+        Assert.That(searchedProductNames, Is.All.Contains(productName));
     }
 }
