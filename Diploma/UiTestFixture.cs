@@ -6,12 +6,14 @@ namespace Diploma
     [TestFixture]
     internal class UiTestFixture
     {
-        protected IPage Page { get; private set; }
+        protected IPage? Page { get; private set; }
         private IBrowser _browser;
+        private IBrowserContext? _context;
+        private IPlaywright _playwright;
         private UserManagement _userManagement;
         private const string BaseUrl = "https://automationexercise.com/";
 
-        protected readonly Dictionary<string, string> UserData = new()
+        private readonly Dictionary<string, string> _userData = new()
         {
             { "email", "testMaks@gmail.com" },
             { "password", "Qwerty12345*" },
@@ -33,53 +35,14 @@ namespace Diploma
         {
             _userManagement = new UserManagement(new HttpClient());
 
-            await _userManagement.CreateUserViaApi(BaseUrl, UserData);
+            // Создание пользователя через API
+            await _userManagement.CreateUserViaApi(BaseUrl, _userData);
 
-            var playwrightDriver = await Playwright.CreateAsync();
-            _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            _playwright = await Playwright.CreateAsync();
+            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false, // Set false to run the browser in non-headless mode
-                Args = ["--start-maximized"] // Set the browser to start maximized
-            });
-
-            var projectDirectory =
-                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
-            var fileDirectory = Path.Combine(projectDirectory, "Diploma", ".auth");
-            var authStatePath = Path.Combine(projectDirectory, "Diploma", ".auth", "state.json");
-
-            if (!Directory.Exists(fileDirectory))
-            {
-                Directory.CreateDirectory(fileDirectory);
-                Console.WriteLine($"Created Scripts directory at path: {fileDirectory}");
-            }
-
-            if (!File.Exists(authStatePath))
-            {
-                await File.Create(authStatePath).DisposeAsync();
-            }
-
-            var context = await _browser.NewContextAsync(new BrowserNewContextOptions
-            {
-                ViewportSize = ViewportSize.NoViewport,
-                StorageStatePath = authStatePath
-            });
-
-            Page = await context.NewPageAsync();
-
-            await context.StorageStateAsync(new BrowserContextStorageStateOptions
-            {
-                Path = authStatePath
-            });
-        }
-
-        [SetUp]
-        public async Task Setup()
-        {
-            var playwrightDriver = await Playwright.CreateAsync();
-            _browser = await playwrightDriver.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-            {
-                Headless = false, // Set false to run the browser in non-headless mode
-                Args = ["--start-maximized"] // Set the browser to start maximized
+                Headless = false,
+                Args = ["--start-maximized"]
             });
 
             var contextOptions = new BrowserNewContextOptions
@@ -88,20 +51,31 @@ namespace Diploma
                 StorageStatePath = File.Exists(StorageStatePath) ? StorageStatePath : null
             };
 
-            var context = await _browser.NewContextAsync(contextOptions);
-            Page = await context.NewPageAsync();
+            _context = await _browser.NewContextAsync(contextOptions);
+            Page = await _context.NewPageAsync();
+
+            // Сохранение состояния сессии
+            await _context.StorageStateAsync(new BrowserContextStorageStateOptions
+            {
+                Path = StorageStatePath
+            });
         }
 
         [OneTimeTearDown]
         public async Task OneTimeTearDown()
         {
-            await _userManagement.DeleteUserViaApi(BaseUrl, UserData["email"], UserData["password"]);
+            // Удаление пользователя через API
+            await _userManagement.DeleteUserViaApi(BaseUrl, _userData["email"], _userData["password"]);
+            await _browser.CloseAsync();
+            _playwright.Dispose();
         }
 
         [TearDown]
         public async Task Teardown()
         {
-            await _browser.CloseAsync();
+            await _context?.CloseAsync()!;
+            _context = null;
+            Page = null;
         }
     }
 }

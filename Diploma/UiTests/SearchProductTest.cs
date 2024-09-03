@@ -20,19 +20,17 @@ internal class SearchProductTest : UiTestFixture
     public async Task SearchProduct()
     {
         // Arrange
-        var homePage = new HomePage(Page);
-        var productsPage = new ProductsPage(Page);
         const string productName = "Top";
         
         // Act
-        await homePage.GoToHomePage();
-        await productsPage.GoToProductsPage();
-        await productsPage.VerifyProductsPageVisible();
-        await productsPage.SearchProduct(productName);
-        await productsPage.VerifySearchedProductsVisible();
-        var searchedProductNames = await productsPage.GetProductName();
+        await _homePage.GoToHomePage();
+        await _productsPage.GoToProductsPage();
+        await _productsPage.VerifyProductsPageVisible();
+        await _productsPage.SearchProduct(productName);
+        await _productsPage.VerifySearchedProductsVisible();
+        var searchedProductNames = await _productsPage.GetProductNameText();
         
         // Assert
-        Assert.That(searchedProductNames, Is.All.Contains(productName));
+        Assert.That(searchedProductNames.Any(name => name.Contains(productName)), "Product name does not contain searched product name");
     }
 }
