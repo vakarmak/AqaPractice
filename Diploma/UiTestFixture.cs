@@ -13,7 +13,7 @@ namespace Diploma
         private UserManagement _userManagement;
         private const string BaseUrl = "https://automationexercise.com/";
 
-        private readonly Dictionary<string, string> _userData = new()
+        protected readonly Dictionary<string, string> UserData = new()
         {
             { "email", "testMaks@gmail.com" },
             { "password", "Qwerty12345*" },
@@ -36,7 +36,7 @@ namespace Diploma
             _userManagement = new UserManagement(new HttpClient());
 
             // Создание пользователя через API
-            await _userManagement.CreateUserViaApi(BaseUrl, _userData);
+            await _userManagement.CreateUserViaApi(BaseUrl, UserData);
 
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
@@ -65,7 +65,7 @@ namespace Diploma
         public async Task OneTimeTearDown()
         {
             // Удаление пользователя через API
-            await _userManagement.DeleteUserViaApi(BaseUrl, _userData["email"], _userData["password"]);
+            await _userManagement.DeleteUserViaApi(BaseUrl, UserData["email"], UserData["password"]);
             await _browser.CloseAsync();
             _playwright.Dispose();
         }
