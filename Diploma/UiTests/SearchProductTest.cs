@@ -23,7 +23,6 @@ internal class SearchProductTest : UiTestFixture
         const string productName = "Top";
         
         // Act
-        await _homePage.GoToHomePage();
         await _productsPage.GoToProductsPage();
         await _productsPage.VerifyProductsPageVisible();
         await _productsPage.SearchProduct(productName);

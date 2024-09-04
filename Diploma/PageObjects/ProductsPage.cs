@@ -40,7 +40,7 @@ internal class ProductsPage(IPage? page)
 
     public async Task<List<string>> GetProductNameText()
     {
-        var products = await page.QuerySelectorAllAsync(".overlay-content");
+        var products = await page!.QuerySelectorAllAsync(".overlay-content");
         var productNames = await Task.WhenAll(products.Select(async result =>
         {
             var text = await result!.InnerTextAsync();

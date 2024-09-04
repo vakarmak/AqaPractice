@@ -25,11 +25,14 @@ internal class ContactUsTest : UiTestFixture
         const string message = "This is a test message";
         
         // Act
-        await _homePage.GoToHomePage();
         await _contactUsPage.GoToContactUsPage();
-        await _contactUsPage.VerifyContactUsPageVisible();
+        await _contactUsPage.IsGetInTouchTitleVisible();
         await _contactUsPage.FillContactUsForm(name, email, subject, message);
         await _contactUsPage.UploadImage();
         await _contactUsPage.SubmitForm();
+        await _homePage.GoToHomePage();
+        
+        // Assert
+        await _homePage.VerifyHomePageIsOpened();
     }
 }
