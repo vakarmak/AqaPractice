@@ -62,15 +62,15 @@ namespace Diploma
         [SetUp]
         public async Task SetUp()
         {
-                await Page!.GotoAsync($"{BaseUrl}login");
-                await Page.FillAsync("//input[@data-qa='login-email']", UserData["email"]);
-                await Page.FillAsync("//input[@data-qa='login-password']", UserData["password"]);
-                await Page.ClickAsync("//button[@data-qa='login-button']");
+            await Page!.GotoAsync($"{BaseUrl}login");
+            await Page.FillAsync("//input[@data-qa='login-email']", UserData["email"]);
+            await Page.FillAsync("//input[@data-qa='login-password']", UserData["password"]);
+            await Page.ClickAsync("//button[@data-qa='login-button']");
 
-                await _context!.StorageStateAsync(new BrowserContextStorageStateOptions
-                {
-                    Path = StorageStatePath
-                });
+            await _context!.StorageStateAsync(new BrowserContextStorageStateOptions
+            {
+                Path = StorageStatePath
+            });
         }
 
 

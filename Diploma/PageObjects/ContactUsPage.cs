@@ -18,7 +18,6 @@ internal class ContactUsPage(IPage? page)
 
     private ILocator ChooseFileButton => page!.Locator("//input[@name='upload_file']");
     private ILocator SubmitButton => page!.Locator("//input[@name='submit']");
-    private ILocator SubmitFormConfirmation => page!.Locator(".status");
 
     // Methods
     public async Task GoToContactUsPage()
