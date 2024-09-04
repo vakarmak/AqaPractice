@@ -1,5 +1,4 @@
 ﻿using Diploma.PageObjects;
-using Microsoft.Playwright;
 
 namespace Diploma.UiTests;
 
