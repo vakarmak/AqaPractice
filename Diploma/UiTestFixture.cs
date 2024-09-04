@@ -35,7 +35,6 @@ namespace Diploma
         {
             _userManagement = new UserManagement(new HttpClient());
 
-            // Создание пользователя через API
             await _userManagement.CreateUserViaApi(BaseUrl, UserData);
 
             _playwright = await Playwright.CreateAsync();
@@ -54,17 +53,30 @@ namespace Diploma
             _context = await _browser.NewContextAsync(contextOptions);
             Page = await _context.NewPageAsync();
 
-            // Сохранение состояния сессии
             await _context.StorageStateAsync(new BrowserContextStorageStateOptions
             {
                 Path = StorageStatePath
             });
         }
 
+        [SetUp]
+        public async Task SetUp()
+        {
+                await Page!.GotoAsync($"{BaseUrl}login");
+                await Page.FillAsync("//input[@data-qa='login-email']", UserData["email"]);
+                await Page.FillAsync("//input[@data-qa='login-password']", UserData["password"]);
+                await Page.ClickAsync("//button[@data-qa='login-button']");
+
+                await _context!.StorageStateAsync(new BrowserContextStorageStateOptions
+                {
+                    Path = StorageStatePath
+                });
+        }
+
+
         [OneTimeTearDown]
         public async Task OneTimeTearDown()
         {
-            // Удаление пользователя через API
             await _userManagement.DeleteUserViaApi(BaseUrl, UserData["email"], UserData["password"]);
             await _browser.CloseAsync();
             _playwright.Dispose();
