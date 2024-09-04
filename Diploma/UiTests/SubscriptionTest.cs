@@ -4,12 +4,12 @@ namespace Diploma.UiTests
 {
     internal class SubscriptionTest : UiTestFixture
     {
-        private ProductCardPage _productCardPage;
+        private CartPage _cartPage;
 
         [SetUp]
         public void SetUpPage()
         {
-            _productCardPage = new ProductCardPage(Page);
+            _cartPage = new CartPage(Page);
         }
 
         [Test]
@@ -17,15 +17,14 @@ namespace Diploma.UiTests
         {
             // Arrange
             var email = UserData["email"];
-            const int productIndex = 0;
 
             // Act
-            await _productCardPage.SelectProduct(productIndex);
-            await _productCardPage.NavigateToFooter();
-            await _productCardPage.SubscribeToNewsletter(email);
+            await _cartPage.GoToCartPage();
+            await _cartPage.NavigateToFooter();
+            await _cartPage.SubscribeToNewsletter(email);
 
             // Assert
-            await _productCardPage.SubscriptionToNewsLettersIsSuccessful();
+            await _cartPage.SubscriptionToNewsLettersIsSuccessful();
         }
     }
 }
