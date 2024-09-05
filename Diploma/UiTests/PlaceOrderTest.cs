@@ -19,7 +19,7 @@ namespace Diploma.UiTests
         }
 
         [Test]
-        public async Task PlaceOrder()
+        public async Task PlaceOrderAndDeleteAccount()
         {
             // Arrange
             await _homePage.GoToHomePage();
