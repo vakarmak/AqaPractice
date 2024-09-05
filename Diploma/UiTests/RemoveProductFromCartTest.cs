@@ -16,7 +16,7 @@ namespace Diploma.UiTests
         public async Task RemoveProductFromCart()
         {
             // Arrange
-            const int productIndex = 0;
+            const int productIndex = 1;
 
             // Act
             await _cartPage.AddProductToCart(productIndex);

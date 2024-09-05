@@ -45,9 +45,10 @@ namespace Diploma.PageObjects
 
         public async Task AddProductToCart(int productIndex)
         {
-            var products = await page!.QuerySelectorAllAsync("..overlay-content");
+            var products = await page!.QuerySelectorAllAsync(".col-sm-4");
             var product = products[productIndex];
-            var selectedProduct = await product.QuerySelectorAsync(".overlay-content");
+            await product!.HoverAsync();
+
             var addToCartButton = await product!.QuerySelectorAsync(".add-to-cart");
             await addToCartButton!.ClickAsync();
         }
