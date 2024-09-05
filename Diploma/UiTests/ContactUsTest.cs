@@ -25,7 +25,6 @@ internal class ContactUsTest : UiTestFixture
         
         // Act
         await _contactUsPage.GoToContactUsPage();
-        await _contactUsPage.IsGetInTouchTitleVisible();
         await _contactUsPage.FillContactUsForm(name, email, subject, message);
         await _contactUsPage.UploadImage();
         await _contactUsPage.SubmitForm();

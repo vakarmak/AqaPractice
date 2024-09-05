@@ -44,8 +44,6 @@ namespace Diploma.UiTests
             await _cartPage.ContinueShopping();
             await _cartPage.GoToCartPage();
             await _checkout.MakeCheckout();
-            await _checkout.VerifyAddressDetails();
-            await _checkout.VerifyReviewYourOrder();
             await _checkout.MakeComment(message);
             await _payment.PlaceOrder();
             await _payment.EnterCardInfo(cardName, cardNumber, csv, expirationMonth, expirationYear);

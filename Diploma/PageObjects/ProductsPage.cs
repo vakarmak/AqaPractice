@@ -20,10 +20,7 @@ internal class ProductsPage(IPage? page)
     {
         await ProductsButton.ClickAsync();
         await Assertions.Expect(page).ToHaveURLAsync(ProductsPageUrl);
-    }
-    
-    public async Task VerifyProductsPageVisible()
-    {
+
         await Assertions.Expect(AllProductsTitle).ToBeVisibleAsync();
     }
 
@@ -31,10 +28,7 @@ internal class ProductsPage(IPage? page)
     {
         await SearchInput.FillAsync(productName);
         await SearchButton.ClickAsync();
-    }
-    
-    public async Task VerifySearchedProductsVisible()
-    {
+
         await Assertions.Expect(SearchedProductsTitle).ToBeVisibleAsync();
     }
 

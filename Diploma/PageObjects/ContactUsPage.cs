@@ -24,10 +24,7 @@ internal class ContactUsPage(IPage? page)
     {
         await ContactUsButton.ClickAsync();
         await Assertions.Expect(page).ToHaveURLAsync(ContactUsPageUrl);
-    }
 
-    public async Task IsGetInTouchTitleVisible()
-    {
         await Assertions.Expect(GetInTouchTitle).ToBeVisibleAsync();
     }
 

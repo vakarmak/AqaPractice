@@ -51,12 +51,8 @@ namespace Diploma
             };
 
             _context = await _browser.NewContextAsync(contextOptions);
+            
             Page = await _context.NewPageAsync();
-
-            await _context.StorageStateAsync(new BrowserContextStorageStateOptions
-            {
-                Path = StorageStatePath
-            });
         }
 
         [SetUp]

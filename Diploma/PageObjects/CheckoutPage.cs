@@ -17,15 +17,9 @@ namespace Diploma.PageObjects
         public async Task MakeCheckout()
         {
             await Checkout.ClickAsync();
-        }
 
-        public async Task VerifyAddressDetails()
-        {
             await AddressDetails.IsVisibleAsync();
-        }
 
-        public async Task VerifyReviewYourOrder()
-        {
             await ReviewYourOrder.IsVisibleAsync();
         }
 

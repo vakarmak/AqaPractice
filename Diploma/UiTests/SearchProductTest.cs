@@ -23,9 +23,7 @@ internal class SearchProductTest : UiTestFixture
         
         // Act
         await _productsPage.GoToProductsPage();
-        await _productsPage.VerifyProductsPageVisible();
         await _productsPage.SearchProduct(productName);
-        await _productsPage.VerifySearchedProductsVisible();
         var searchedProductNames = await _productsPage.GetProductNameText();
         
         // Assert
