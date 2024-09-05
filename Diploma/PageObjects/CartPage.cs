@@ -19,6 +19,7 @@ namespace Diploma.PageObjects
         private ILocator DeleteProductButton => page!.Locator("//a[@class='cart_quantity_delete']");
         private ILocator CartIsEmpty => page!.GetByText("Cart is empty!");
 
+
         // Methods
         public async Task GoToCartPage()
         {
