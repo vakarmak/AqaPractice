@@ -2,7 +2,7 @@
 
 namespace Diploma.UiTests
 {
-    internal class PlaceOrderTest : BaseUiTestFixture
+    internal class PlaceOrderTest : UiTestFixture
     {
         private HomePage _homePage;
         private CartPage _cartPage;
@@ -19,13 +19,9 @@ namespace Diploma.UiTests
         }
 
         [Test]
-        public async Task PlaceOrderAndDeleteAccount()
+        public async Task PlaceOrder()
         {
             // Arrange
-            await _homePage.GoToHomePage();
-            await _homePage.GoToLoginPage();
-            await _homePage.Login(UserData["email"], UserData["password"]);
-
             var userName = UserData["name"];
 
             const int productIndex = 1;
@@ -39,20 +35,17 @@ namespace Diploma.UiTests
             const string expirationYear = "2025";
 
             // Act
-            await _homePage.VerifyUserLogin(userName);
             await _cartPage.AddProductToCart(productIndex);
             await _cartPage.ContinueShopping();
-            await _cartPage.GoToCartPage();
+            await _homePage.OpenCartPage();
             await _checkout.MakeCheckout();
             await _checkout.MakeComment(message);
             await _payment.PlaceOrder();
             await _payment.EnterCardInfo(cardName, cardNumber, csv, expirationMonth, expirationYear);
             await _payment.ConfirmOrder();
-            await _payment.OrderIsPlaced();
-            await _homePage.DeleteAccount();
 
             // Assert
-            await _homePage.IsAccountDeleted();
+            await _payment.IsOrderPlaced();
         }
     }
 }

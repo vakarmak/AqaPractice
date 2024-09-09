@@ -5,11 +5,13 @@ namespace Diploma.UiTests
     internal class RemoveProductFromCartTest : UiTestFixture
     {
         private CartPage _cartPage;
+        private HomePage _homePage;
 
         [SetUp]
-        public void SetUpPage()
+        public void SetUpPages()
         {
             _cartPage = new CartPage(Page);
+            _homePage = new HomePage(Page);
         }
 
         [Test]
@@ -21,7 +23,7 @@ namespace Diploma.UiTests
             // Act
             await _cartPage.AddProductToCart(productIndex);
             await _cartPage.ContinueShopping();
-            await _cartPage.GoToCartPage();
+            await _homePage.OpenCartPage();
             await _cartPage.DeleteProductFromCart();
 
             // Assert

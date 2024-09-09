@@ -4,13 +4,7 @@ namespace Diploma.PageObjects;
 
 internal class ContactUsPage(IPage? page)
 {
-    private const string ContactUsPageUrl = "https://automationexercise.com/contact_us";
-
     // Locators
-    private ILocator ContactUsButton => page!.Locator("//a[@href='/contact_us']");
-
-    private ILocator GetInTouchTitle => page!.Locator("//h2[contains(text(), 'Get In Touch')]");
-
     private ILocator NameInput => page!.Locator("//input[@name='name']");
     private ILocator EmailInput => page!.Locator("//input[@name='email']");
     private ILocator SubjectInput => page!.Locator("//input[@name='subject']");
@@ -20,14 +14,6 @@ internal class ContactUsPage(IPage? page)
     private ILocator SubmitButton => page!.Locator("//input[@name='submit']");
 
     // Methods
-    public async Task GoToContactUsPage()
-    {
-        await ContactUsButton.ClickAsync();
-        await Assertions.Expect(page).ToHaveURLAsync(ContactUsPageUrl);
-
-        await Assertions.Expect(GetInTouchTitle).ToBeVisibleAsync();
-    }
-
     public async Task FillContactUsForm(string name, string email, string subject, string message)
     {
         await NameInput.FillAsync(name);

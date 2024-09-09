@@ -29,11 +29,11 @@ public class UserManagement(HttpClient httpClient)
 
     public async Task DeleteUserViaApi(string baseUrl, string email, string password)
     {
-        var content = new FormUrlEncodedContent(new[]
-        {
+        var content = new FormUrlEncodedContent(
+        [
             new KeyValuePair<string, string>("email", email),
             new KeyValuePair<string, string>("password", password)
-        });
+        ]);
 
         var requestMessage = new HttpRequestMessage(HttpMethod.Delete, $"{baseUrl}/api/deleteAccount")
         {

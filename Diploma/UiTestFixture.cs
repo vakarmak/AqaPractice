@@ -28,15 +28,17 @@ namespace Diploma
             { "mobile_number", "0987458595" }
         };
 
-        private const string StorageStatePath = "state.json";
-
         [OneTimeSetUp]
         public async Task OneTimeSetUp()
         {
             _userManagement = new UserManagement(new HttpClient());
 
             await _userManagement.CreateUserViaApi(BaseUrl, UserData);
+        }
 
+        [SetUp]
+        public async Task SetUp()
+        {
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
@@ -44,46 +46,57 @@ namespace Diploma
                 Args = ["--start-maximized"]
             });
 
-            var contextOptions = new BrowserNewContextOptions
+            var projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\.."));
+            var fileDirectory = Path.Combine(projectDirectory, "Diploma", ".auth");
+            var authStatePath = Path.Combine(fileDirectory, "state.json");
+
+            if (!Directory.Exists(fileDirectory))
             {
-                ViewportSize = ViewportSize.NoViewport,
-                StorageStatePath = File.Exists(StorageStatePath) ? StorageStatePath : null
-            };
+                Directory.CreateDirectory(fileDirectory);
+            }
 
-            _context = await _browser.NewContextAsync(contextOptions);
-            
-            Page = await _context.NewPageAsync();
-        }
-
-        [SetUp]
-        public async Task SetUp()
-        {
-            await Page!.GotoAsync($"{BaseUrl}login");
-            await Page.FillAsync("//input[@data-qa='login-email']", UserData["email"]);
-            await Page.FillAsync("//input[@data-qa='login-password']", UserData["password"]);
-            await Page.ClickAsync("//button[@data-qa='login-button']");
-
-            await _context!.StorageStateAsync(new BrowserContextStorageStateOptions
+            if (!File.Exists(authStatePath))
             {
-                Path = StorageStatePath
+                await File.Create(authStatePath).DisposeAsync();
+            }
+
+            _context = await _browser.NewContextAsync(new BrowserNewContextOptions
+            {
+                StorageStatePath = authStatePath,
+                ViewportSize = ViewportSize.NoViewport
             });
+
+            Page = await _context.NewPageAsync();
+
+            await Page.GotoAsync($"{BaseUrl}login");
+
+            if (Page.Url.Contains("login"))
+            {
+                await Page.FillAsync("//input[@data-qa='login-email']", UserData["email"]);
+                await Page.FillAsync("//input[@data-qa='login-password']", UserData["password"]);
+                await Page.ClickAsync("//button[@data-qa='login-button']");
+
+                await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+
+                await _context.StorageStateAsync(new BrowserContextStorageStateOptions
+                {
+                    Path = authStatePath
+                });
+            }
+
         }
-
-
+        
+        [TearDown]
+        public async Task Teardown()
+        {
+            await _browser.CloseAsync();
+            _playwright.Dispose();
+        }
+        
         [OneTimeTearDown]
         public async Task OneTimeTearDown()
         {
             await _userManagement.DeleteUserViaApi(BaseUrl, UserData["email"], UserData["password"]);
-            await _browser.CloseAsync();
-            _playwright.Dispose();
-        }
-
-        [TearDown]
-        public async Task Teardown()
-        {
-            await _context?.CloseAsync()!;
-            _context = null;
-            Page = null;
         }
     }
 }

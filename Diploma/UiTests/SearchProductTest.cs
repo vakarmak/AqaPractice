@@ -22,7 +22,7 @@ internal class SearchProductTest : UiTestFixture
         const string productName = "Top";
         
         // Act
-        await _productsPage.GoToProductsPage();
+        await _homePage.OpenProductsPage();
         await _productsPage.SearchProduct(productName);
         var searchedProductNames = await _productsPage.GetProductNameText();
         

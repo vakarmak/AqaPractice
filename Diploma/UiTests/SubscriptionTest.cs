@@ -5,11 +5,13 @@ namespace Diploma.UiTests
     internal class SubscriptionTest : UiTestFixture
     {
         private CartPage _cartPage;
+        private HomePage _homePage;
 
         [SetUp]
-        public void SetUpPage()
+        public void SetUpPages()
         {
             _cartPage = new CartPage(Page);
+            _homePage = new HomePage(Page);
         }
 
         [Test]
@@ -19,8 +21,7 @@ namespace Diploma.UiTests
             var email = UserData["email"];
 
             // Act
-            await _cartPage.GoToCartPage();
-            await _cartPage.NavigateToFooter();
+            await _homePage.OpenCartPage();
             await _cartPage.SubscribeToNewsletter(email);
 
             // Assert

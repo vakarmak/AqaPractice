@@ -18,7 +18,7 @@ namespace Diploma.PageObjects
         {
             await Checkout.ClickAsync();
 
-            await AddressDetails.IsVisibleAsync();
+            await AddressDetails.WaitForAsync();
 
             await ReviewYourOrder.IsVisibleAsync();
         }

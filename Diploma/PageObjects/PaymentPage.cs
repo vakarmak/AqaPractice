@@ -31,7 +31,7 @@ namespace Diploma.PageObjects
             await ConfirmOrderButton.ClickAsync();
         }
 
-        public async Task OrderIsPlaced()
+        public async Task IsOrderPlaced()
         {
             await OrderPlaced.IsVisibleAsync();
         }
